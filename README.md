@@ -112,7 +112,7 @@ magick mogrify -format webp -quality 80 *.png *.jpeg
    - Guardá
 4. Esperá 1-2 minutos. Tu sitio queda disponible en:
    ```
-   https://<tu-usuario>.github.io/<nombre-del-repo>/
+   https://eagle75ar.github.io/mimascota/
    ```
 
 ### Tip: dominio personalizado (opcional)
@@ -120,7 +120,7 @@ magick mogrify -format webp -quality 80 *.png *.jpeg
 Si querés que se vea en `misgatitos.com` o similar:
 - Comprá el dominio
 - En **Settings → Pages → Custom domain** poné el dominio
-- Configurá los DNS en tu registrador (un CNAME apuntando a `<tu-usuario>.github.io`)
+- Configurá los DNS en tu registrador (un CNAME apuntando a `eagle75ar.github.io`)
 
 ---
 
