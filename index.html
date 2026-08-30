@@ -1,1124 +1,1994 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Instagram - José de San Martín</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Trabajo Práctico de Ciencias Naturales sobre el gato doméstico, por Brisa González, 4to D. Conocé a Rocco, Tom y Bigote." />
+  <meta name="author" content="Brisa González" />
+  <title>🐾 Mis Gatitos: Rocco, Tom y Bigote · Brisa 4to D</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐱%3C/text%3E%3C/svg%3E" />
+
   <style>
+    /* =====================================================
+       VARIABLES Y RESET
+       ===================================================== */
+    :root {
+      --crema: #fff8ec;
+      --crema-2: #fff2dd;
+      --durazno: #ffb98a;
+      --durazno-oscuro: #ff8a5b;
+      --menta: #a8e6cf;
+      --menta-oscuro: #6cc4a3;
+      --lavanda: #d6b8ff;
+      --lavanda-oscuro: #a685e0;
+      --rosa: #ffb3c6;
+      --texto: #3d2c2c;
+      --texto-suave: #6b5454;
+      --blanco: #ffffff;
+      --sombra: 0 10px 30px rgba(168, 110, 90, 0.18);
+      --sombra-hover: 0 20px 50px rgba(168, 110, 90, 0.28);
+      --radio: 24px;
+      --radio-chico: 16px;
+      --transicion: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&display=swap');
+    [data-theme="dark"] {
+      --crema: #1f1820;
+      --crema-2: #2a1f28;
+      --durazno: #ff9166;
+      --durazno-oscuro: #ffb98a;
+      --menta: #5fbf9c;
+      --menta-oscuro: #a8e6cf;
+      --lavanda: #9b7ad0;
+      --lavanda-oscuro: #d6b8ff;
+      --rosa: #d685a0;
+      --texto: #f3e8d8;
+      --texto-suave: #c9b8a8;
+      --blanco: #2a1f28;
+      --sombra: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --sombra-hover: 0 20px 50px rgba(0, 0, 0, 0.55);
+    }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
 
     body {
+      font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+      line-height: 1.7;
+      font-weight: 500;
+      overflow-x: hidden;
+      transition: background var(--transicion), color var(--transicion);
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(255, 185, 138, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(214, 184, 255, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(168, 230, 207, 0.18) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* Patrón de patitas de fondo */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ffb98a' fill-opacity='0.08'%3E%3Ccircle cx='20' cy='20' r='3'/%3E%3Ccircle cx='30' cy='12' r='2.5'/%3E%3Ccircle cx='10' cy='12' r='2.5'/%3E%3Ccircle cx='26' cy='28' r='2'/%3E%3Cellipse cx='20' cy='32' rx='5' ry='3'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* =====================================================
+       TIPOGRAFÍA
+       ===================================================== */
+    h1, h2, h3, h4 {
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .firma {
       font-family: 'Caveat', cursive;
-      background: #A8D8EA;
-      min-height: 100vh;
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 12px;
+      font-weight: 700;
+      color: var(--durazno-oscuro);
     }
 
-    /* ================================
-       ANIMACIONES
-    ================================ */
-    @keyframes fadeSlideDown {
-      from { opacity: 0; transform: translateY(-18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes popIn {
-      from { transform: scale(0.85); opacity: 0; }
-      to   { transform: scale(1);    opacity: 1; }
-    }
-    @keyframes heartPop {
-      0%   { transform: scale(1);   }
-      40%  { transform: scale(1.6); }
-      70%  { transform: scale(0.9); }
-      100% { transform: scale(1);   }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1);     box-shadow: 0 0 0 0   rgba(192,57,43,0);    }
-      50%       { transform: scale(1.07);  box-shadow: 0 0 0 8px rgba(192,57,43,0.3); }
-    }
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position:  200% center; }
-    }
-    @keyframes starFloat {
-      0%, 100% { transform: translateY(0)   rotate(0deg);   opacity: 1; }
-      50%       { transform: translateY(-6px) rotate(10deg); opacity: 0.8; }
+    /* =====================================================
+       NAVEGACIÓN
+       ===================================================== */
+    .nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 248, 236, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 2px solid var(--durazno);
+      border-radius: 50px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 100;
+      box-shadow: var(--sombra);
+      max-width: 95vw;
+      transition: all var(--transicion);
     }
 
-    .anim-header  { animation: fadeSlideDown 0.5s ease both; }
-    .anim-profile { animation: fadeSlideDown 0.6s ease 0.1s both; }
-    .anim-stats   { animation: fadeSlideUp   0.5s ease 0.2s both; }
-    .anim-middle  { animation: fadeIn        0.6s ease 0.35s both; }
-    .anim-datos   { animation: fadeSlideUp   0.5s ease 0.45s both; }
-    .anim-frases  { animation: fadeSlideUp   0.5s ease 0.55s both; }
-    .anim-footer  { animation: fadeIn        0.5s ease 0.7s both; }
+    [data-theme="dark"] .nav {
+      background: rgba(31, 24, 32, 0.85);
+    }
 
-    /* ================================
-       HEADER
-    ================================ */
-    .ig-header {
-      background: #fff;
-      border: 3px solid #c0392b;
-      border-radius: 10px;
-      display: flex; align-items: center; gap: 10px;
+    .nav a {
+      color: var(--texto);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
       padding: 8px 14px;
-      margin-bottom: 14px;
+      border-radius: 50px;
+      transition: all var(--transicion);
+      white-space: nowrap;
     }
-    .ig-logo-icon {
-      width: 38px; height: 38px;
-      border: 3px solid #c0392b; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; color: #c0392b; font-weight: bold;
-    }
-    .ig-title {
-      font-family: 'Caveat', cursive;
-      font-size: 34px; font-weight: 700;
-      color: #6a0dad; letter-spacing: 1px;
-    }
-    .ig-dots {
-      margin-left: auto;
-      font-size: 20px; color: #555; letter-spacing: 2px;
-      cursor: pointer; transition: transform 0.2s;
-    }
-    .ig-dots:active { transform: scale(1.3); }
 
-    /* ================================
-       PERFIL SUPERIOR
-    ================================ */
-    .profile-section {
-      display: flex; gap: 12px;
-      margin-bottom: 10px; align-items: flex-start;
+    .nav a:hover, .nav a:focus-visible {
+      background: var(--durazno);
+      color: white;
+      transform: scale(1.05);
     }
-    .avatar-box {
-      flex-shrink: 0;
-      width: 130px; height: 155px;
-      border: 4px solid #74ACDF; border-radius: 8px;
-      background: #a8d8ea;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; position: relative;
+
+    .nav-toggle {
+      background: var(--durazno);
+      color: white;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transicion);
     }
-    .avatar-box:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 0 3px #74ACDF,   /* celeste */
-              0 0 0 6px #FFFFFF,   /* blanco  */
-              0 0 0 9px #74ACDF;   /* celeste */
-}
-    .avatar-box img { width: 100%; height: 100%; object-fit: cover; }
-    .avatar-box::after {
-      content: '👁 Ver foto';
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: rgba(0,0,0,0.45); color: #fff;
-      font-family: 'Caveat', cursive; font-size: 13px;
-      text-align: center; padding: 4px 0;
-      opacity: 0; transition: opacity 0.2s;
-    }
-    .avatar-box:hover::after { opacity: 1; }
 
-    .profile-info-right {
-      flex: 1; display: flex; flex-direction: column; gap: 6px;
+    .nav-toggle:hover {
+      transform: rotate(20deg) scale(1.1);
     }
-    .name-box {
-      background: #f9e400; border: 2px solid #27ae60;
-      border-radius: 8px; padding: 6px 10px;
-    }
-    .profile-name { font-size: 22px; font-weight: 700; color: #1a1a1a; line-height: 1.2; }
 
-    .handle {
-      font-size: 14px; color: #1a5276; font-weight: 600;
-      cursor: pointer; transition: color 0.2s;
-    }
-    .handle:hover { color: #c0392b; }
-
-    /* Descripción abajo del avatar */
-    .desc-below {
-      background: #fff; border: 2px dashed #2980b9;
-      border-radius: 12px; padding: 6px 10px;
-      margin-bottom: 4px;
-    }
-    .desc-text { font-size: 13px; color: #1a1a1a; line-height: 1.4; }
-    .padre-badge {
-      background: #f9e400; border: 2px solid #e67e22;
-      border-radius: 10px; padding: 4px 10px;
-      font-size: 13px; font-weight: 700; color: #1a1a1a;
+    /* =====================================================
+       HERO
+       ===================================================== */
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      animation: pulse 2s ease-in-out infinite;
+      padding: 100px 24px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-emoji {
+      font-size: clamp(5rem, 15vw, 9rem);
+      display: inline-block;
+      animation: flotar-suave 8s ease-in-out infinite;
+      filter: drop-shadow(0 10px 20px rgba(255, 138, 91, 0.3));
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    @keyframes flotar-suave {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 7vw, 4.5rem);
+      margin: 24px 0 12px;
+      background: linear-gradient(135deg, var(--durazno-oscuro), var(--lavanda-oscuro));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: aparecer 1s ease-out 0.2s both;
+    }
+
+    .hero .subtitulo {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: var(--texto-suave);
+      font-weight: 700;
+      margin-bottom: 8px;
+      animation: aparecer 1s ease-out 0.4s both;
+    }
+
+    .hero .autora {
+      font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+      margin: 8px 0 32px;
+      animation: aparecer 1s ease-out 0.6s both;
+    }
+
+    .hero .firma {
+      font-size: 1.4em;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--durazno);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 20px rgba(255, 138, 91, 0.4);
+      transition: all var(--transicion);
+      animation: aparecer 1s ease-out 0.8s both, pulso 2.5s ease-in-out 2s infinite;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(255, 138, 91, 0.55);
+      background: var(--durazno-oscuro);
+    }
+
+    @keyframes pulso {
+      0%, 100% { box-shadow: 0 8px 20px rgba(255, 138, 91, 0.4); }
+      50% { box-shadow: 0 8px 30px rgba(255, 138, 91, 0.7); }
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--texto-suave);
+      font-size: 0.9rem;
+      animation: aparecer 1s ease-out 1.2s both, bounce 2s ease-in-out 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* =====================================================
+       SECCIONES GENERALES
+       ===================================================== */
+    section {
+      padding: 80px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .seccion-titulo {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .seccion-titulo h2 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-bottom: 12px;
+      color: var(--texto);
+    }
+
+    .seccion-titulo .decoracion {
+      display: inline-block;
+      font-size: 1.4em;
+      margin: 0 8px;
+    }
+
+    @keyframes girar {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
+    /* La regla .decoracion ya no usa esta animación (era demasiado distrae) */
+    @keyframes none {}
+
+    .seccion-titulo p {
+      color: var(--texto-suave);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* =====================================================
+       REVEAL ANIMATION
+       ===================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =====================================================
+       CARÁTULA
+       ===================================================== */
+    .caratula {
+      background: linear-gradient(135deg, var(--durazno), var(--lavanda));
+      border-radius: var(--radio);
+      padding: 48px 32px;
+      text-align: center;
+      color: white;
+      box-shadow: var(--sombra);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .caratula::before, .caratula::after {
+      content: '🐾';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .caratula::before {
+      top: -20px;
+      left: -20px;
+      transform: rotate(-25deg);
+    }
+
+    .caratula::after {
+      bottom: -30px;
+      right: -20px;
+      transform: rotate(35deg);
+    }
+
+    .caratula h2 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 8px;
+    }
+
+    .caratula .categoria {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .caratula .imagen-carpeta {
+      max-width: 100%;
+      max-height: 500px;
+      border-radius: var(--radio);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      transition: transform var(--transicion);
+      cursor: zoom-in;
+    }
+
+    .caratula .imagen-carpeta:hover {
+      transform: scale(1.02);
+    }
+
+    .caratula .firma {
+      color: white;
+      font-size: 1.8rem;
+      margin-top: 24px;
       display: inline-block;
     }
 
-    /* ================================
-       STATS
-    ================================ */
-    .stats-row {
-      display: flex; gap: 6px;
-      margin-bottom: 10px; flex-wrap: wrap;
-    }
-    .stat-badge {
-      display: flex; align-items: center; gap: 5px;
-      padding: 6px 10px; border-radius: 10px;
-      font-size: 15px; font-weight: 700; border: 2px solid;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-      user-select: none;
-    }
-    .stat-badge:active { transform: scale(0.93); }
-    .stat-badge:hover  { box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
-    .stat-badge.followers { background: #f9e400; border-color: #e67e22; color: #1a1a1a; }
-    .stat-badge.following { background: #a9dfbf; border-color: #27ae60; color: #1a1a1a; }
-    .stat-badge.posts     { background: #d7bde2; border-color: #8e44ad; color: #1a1a1a; }
-    .stat-icon   { font-size: 16px; }
-    .stat-number { font-size: 18px; font-weight: 700; }
-    .stat-label  { font-size: 11px; }
-
-    /* ================================
-       SECCIÓN MEDIA
-    ================================ */
-    .middle-section {
-      display: flex; gap: 8px;
-      margin-bottom: 10px; align-items: flex-start;
+    /* =====================================================
+       CONCLUSIÓN
+       ===================================================== */
+    .conclusion-texto {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 40px 32px;
+      box-shadow: var(--sombra);
+      font-size: 1.05rem;
+      position: relative;
     }
 
-    /* --- Columna izquierda --- */
-    .left-column { flex: 1; display: flex; flex-direction: column; gap: 8px; }
-
-    .posts-label {
-      font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px;
-    }
-    .posts-label::before { content: "● "; color: #c0392b; }
-
-    .posts-grid-hand { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-
-    .post-card {
-      border: 2px solid #c0392b; border-radius: 8px;
-      background: #a8d8ea; aspect-ratio: 1;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: flex-end;
-      overflow: hidden; position: relative; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .post-card:hover  { transform: scale(1.04); box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
-    .post-card:active { transform: scale(0.97); }
-    .post-card > img {
-      width: 100%; height: 100%; object-fit: cover;
-      position: absolute; top: 0; left: 0;
-      transition: transform 0.3s;
-    }
-    .post-card:hover > img { transform: scale(1.08); }
-    .post-hover-overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 36px; opacity: 0;
-      transition: opacity 0.2s, background 0.2s; z-index: 3;
-    }
-    .post-card:hover .post-hover-overlay { opacity: 1; background: rgba(0,0,0,0.15); }
-    .post-caption {
-      position: relative; z-index: 2; width: 100%;
-      background: rgba(255,255,255,0.88);
-      padding: 3px 5px; font-size: 10px;
-      font-family: 'Caveat', cursive; font-weight: 700;
-      color: #1a1a1a; text-align: center;
-      display: flex; align-items: center; justify-content: center; gap: 3px;
-    }
-    .post-caption::before { content: "❤️"; font-size: 9px; }
-
-    /* Compas de Libertad */
-    .compas-box {
-      background: #fff; border: 2px solid #2c3e50;
-      border-radius: 8px; padding: 7px 10px;
-    }
-    .compas-title {
-      font-size: 14px; font-weight: 700; color: #6a0dad;
-      margin-bottom: 5px; text-align: center;
-      text-transform: uppercase; letter-spacing: 1px;
-    }
-    .compas-item {
-      font-size: 12px; color: #1a1a1a;
-      display: flex; align-items: center; gap: 4px;
-      padding: 2px 4px; border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.15s, transform 0.15s;
-    }
-    .compas-item:hover  { background: #fef9e7; transform: scale(1.04); }
-    .compas-item:active { transform: scale(0.96); }
-
-    /* --- Columna derecha --- */
-    .right-panels { width: 148px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
-
-    /* Siguiendo */
-    .siguiendo-box {
-      background: #a9dfbf; border: 2px solid #27ae60;
-      border-radius: 8px; padding: 6px 8px;
-    }
-    .siguiendo-title {
-      font-size: 14px; font-weight: 700; color: #1a5276;
-      margin-bottom: 4px; text-align: center; text-decoration: underline;
-    }
-    .siguiendo-item {
-      font-size: 12px; color: #1a1a1a;
-      display: flex; align-items: center; gap: 3px;
-      cursor: pointer; border-radius: 6px; padding: 2px 4px;
-      transition: background 0.15s, transform 0.15s;
-    }
-    .siguiendo-item:hover  { background: rgba(255,255,255,0.5); transform: scale(1.04); }
-    .siguiendo-item:active { transform: scale(0.96); }
-
-    /* Seguidores */
-    .seguidores-box {
-      background: #fff; border: 2px solid #2c3e50;
-      border-radius: 8px; padding: 6px 8px;
-    }
-    .seguidores-title {
-      font-size: 15px; font-weight: 700; color: #6a0dad;
-      margin-bottom: 4px; text-decoration: underline;
-    }
-    .seguidor-item {
-      font-size: 11px; color: #1a1a1a;
-      display: flex; align-items: flex-start; gap: 3px;
-      line-height: 1.3; margin-bottom: 3px;
-      cursor: pointer; border-radius: 6px; padding: 2px 4px;
-      transition: background 0.15s, color 0.15s, transform 0.15s;
-    }
-    .seguidor-item:hover  { background: #fef9e7; color: #c0392b; transform: scale(1.04); }
-    .seguidor-item:active { transform: scale(0.96); }
-    .seguidor-bullet { color: #c0392b; font-size: 13px; flex-shrink: 0; }
-
-    /* Separador dentro de seguidores */
-    .seguidor-divider {
-      border: none; border-top: 1px dashed #ccc;
-      margin: 4px 0;
+    .conclusion-texto::before {
+      content: '“';
+      position: absolute;
+      top: -20px;
+      left: 24px;
+      font-size: 8rem;
+      color: var(--durazno);
+      opacity: 0.25;
+      font-family: 'Caveat', cursive;
+      line-height: 1;
     }
 
-    /* Frase inspiracional */
-    .frase-inspiracional {
-      background: #2c3e50; border-radius: 8px;
-      padding: 8px 10px; color: #fff;
-      font-size: 13px; font-style: italic;
-      line-height: 1.4; text-align: center;
-    }
-    .frase-inspiracional strong {
-      display: block; font-size: 15px;
-      color: #f9e400; margin-bottom: 3px;
-      font-style: normal;
+    .conclusion-texto p {
+      margin-bottom: 16px;
+      color: var(--texto);
     }
 
-    /* ================================
-       DATOS
-    ================================ */
-    .datos-box {
-      background: #fff; border: 2px solid #2c3e50;
-      border-radius: 8px; padding: 8px 12px; margin-bottom: 10px;
-    }
-    .datos-title {
-      font-size: 17px; font-weight: 700; color: #1a1a1a;
-      margin-bottom: 6px; text-decoration: underline;
-    }
-    .dato-item {
-      font-size: 13px; color: #1a1a1a;
-      display: flex; align-items: flex-start; gap: 6px;
-      margin-bottom: 4px; line-height: 1.3;
-      cursor: pointer; border-radius: 6px; padding: 3px 4px;
-      transition: background 0.15s, transform 0.15s;
-    }
-    .dato-item:hover  { background: #fef9e7; transform: scale(1.02); }
-    .dato-item:active { transform: scale(0.98); }
-    .dato-fecha { font-weight: 700; color: #c0392b; flex-shrink: 0; }
-    .dato-bullet { color: #c0392b; flex-shrink: 0; }
-
-    /* ================================
-       FRASES
-    ================================ */
-    .frases-box {
-      background: #fff; border: 3px solid #27ae60;
-      border-radius: 10px; padding: 10px 12px;
-      margin-bottom: 12px; position: relative;
-    }
-    .frases-title {
-      font-size: 22px; font-weight: 700; color: #c0392b;
-      margin-bottom: 8px; text-decoration: underline;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .frase-item {
-      font-size: 14px; color: #1a1a1a; line-height: 1.4;
-      margin-bottom: 6px;
-      border-left: 3px solid #f9e400;
-      display: flex; align-items: flex-start; gap: 5px;
-      cursor: pointer; border-radius: 0 6px 6px 0;
-      padding: 5px 5px 5px 10px;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s;
-    }
-    .frase-item:last-child { margin-bottom: 0; }
-    .frase-item:hover  { background: #fef9e7; border-left-color: #c0392b; transform: scale(1.02); }
-    .frase-item:active { transform: scale(0.98); }
-    .frase-bullet { color: #27ae60; font-size: 15px; flex-shrink: 0; }
-    .frase-hl {
-      background: linear-gradient(90deg, #f9e400 0%, #ffe066 40%, #f9e400 60%, #f9e400 100%);
-      background-size: 200% auto;
-      border-radius: 3px; padding: 0 3px;
-      animation: shimmer 2.5s linear infinite;
-    }
-    .deco-checks {
-      position: absolute; top: -10px; right: 8px;
-      font-size: 14px; color: #6a0dad; letter-spacing: 3px;
+    .conclusion-texto p:first-of-type::first-letter {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--durazno-oscuro);
+      float: left;
+      line-height: 0.9;
+      margin: 6px 12px 0 0;
     }
 
-    /* ================================
-       FOOTER
-    ================================ */
-    .footer-made {
-      text-align: center; font-size: 13px; color: #1a5276;
-      padding: 8px 0 16px;
-      font-family: 'Patrick Hand', cursive;
+    .conclusion-texto strong {
+      color: var(--durazno-oscuro);
+    }
+
+    .datos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .dato-card {
+      background: linear-gradient(135deg, var(--crema-2), var(--blanco));
+      border-left: 5px solid var(--durazno);
+      border-radius: var(--radio-chico);
+      padding: 20px;
+      transition: all var(--transicion);
+    }
+
+    .dato-card:nth-child(2) { border-left-color: var(--menta-oscuro); }
+    .dato-card:nth-child(3) { border-left-color: var(--lavanda-oscuro); }
+    .dato-card:nth-child(4) { border-left-color: var(--rosa); }
+
+    .dato-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sombra);
+    }
+
+    .dato-card .emoji {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .dato-card .titulo {
+      font-weight: 800;
+      color: var(--texto);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dato-card .valor {
+      color: var(--texto-suave);
+      font-size: 0.95rem;
+    }
+
+    /* =====================================================
+       GATOS - TARJETAS
+       ===================================================== */
+    .gatos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .gato-card {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      transition: all var(--transicion);
+      position: relative;
+    }
+
+    .gato-card:hover {
+      transform: translateY(-10px) rotate(-1deg);
+      box-shadow: var(--sombra-hover);
+    }
+
+    .gato-card:nth-child(2):hover {
+      transform: translateY(-10px) rotate(1deg);
+    }
+
+    .gato-foto {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: var(--crema-2);
+      transition: transform 0.6s ease;
+      cursor: zoom-in;
+      display: block;
+    }
+
+    .gato-card:hover .gato-foto {
+      transform: scale(1.08);
+    }
+
+    .gato-info {
+      padding: 24px;
+    }
+
+    .gato-info h3 {
+      font-size: 1.6rem;
+      color: var(--durazno-oscuro);
+      margin-bottom: 8px;
+    }
+
+    .gato-info .rol {
+      color: var(--texto-suave);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       font-weight: 700;
+      margin-bottom: 12px;
     }
 
-    /* ================================
-       MODALES
-    ================================ */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.82);
-      z-index: 200;
-      align-items: center; justify-content: center;
-      padding: 16px;
-    }
-    .modal-overlay.open { display: flex; }
-
-    /* Modal Avatar */
-    .modal-avatar-inner {
-      width: 90%; max-width: 380px;
-      border: 4px solid #c0392b; border-radius: 14px;
-      overflow: hidden; animation: popIn 0.25s ease;
-      position: relative; background: #fef9e7;
-    }
-    .modal-avatar-inner img { 
-  width: 100%; 
-  display: block; 
-  object-fit: contain;  /* muestra la imagen completa, sin recortar */
-  background: #1a3a6b;  /* fondo azul oscuro si sobran bordes */
-}
-    .modal-avatar-footer {
-      padding: 10px 14px;
-      font-family: 'Caveat', cursive;
-      font-size: 17px; font-weight: 700;
-      color: #c0392b; text-align: center;
+    .gato-info p {
+      color: var(--texto);
+      font-size: 0.95rem;
     }
 
-    /* Modal Post */
-    .modal-post-inner {
-      background: #fef9e7;
-      border: 4px solid #c0392b; border-radius: 14px;
-      width: 100%; max-width: 420px;
-      max-height: 92vh; overflow-y: auto;
-      animation: popIn 0.25s ease;
-      font-family: 'Caveat', cursive;
+    .gato-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--durazno);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--sombra);
     }
-    .modal-post-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px; border-bottom: 1px solid #e0d9c0;
+
+    /* =====================================================
+       HISTORIAS (vida cotidiana)
+       ===================================================== */
+    .historia {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 80px;
     }
-    .modal-post-user { display: flex; align-items: center; gap: 10px; }
-    .modal-post-avatar {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+
+    .historia:nth-child(even) {
+      direction: rtl;
+    }
+
+    .historia:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .historia-foto {
+      width: 100%;
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      cursor: zoom-in;
+      transition: transform var(--transicion);
+    }
+
+    .historia-foto:hover {
+      transform: scale(1.02) rotate(-1deg);
+    }
+
+    .historia-texto {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 32px;
+      box-shadow: var(--sombra);
+      position: relative;
+    }
+
+    .historia-texto .etiqueta {
+      display: inline-block;
+      background: var(--menta);
+      color: var(--texto);
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .historia-texto h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--durazno-oscuro);
+    }
+
+    .historia-texto p {
+      margin-bottom: 12px;
+      color: var(--texto);
+    }
+
+    .historia-texto .dato {
+      background: var(--crema-2);
+      border-radius: var(--radio-chico);
+      padding: 12px 16px;
+      margin-top: 16px;
+      font-size: 0.95rem;
+    }
+
+    .historia-texto .dato strong {
+      color: var(--lavanda-oscuro);
+    }
+
+    @media (min-width: 768px) {
+      .historia {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+    }
+
+    /* =====================================================
+       CIENCIA - PLANTÍGRADOS VS DIGITÍGRADOS
+       ===================================================== */
+    .ciencia-comparacion {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 600px) {
+      .ciencia-comparacion { grid-template-columns: 1fr; }
+    }
+
+    .ciencia-card {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--sombra);
+      transition: all var(--transicion);
+      position: relative;
       overflow: hidden;
     }
-    .modal-post-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-    .modal-post-username { font-size: 15px; font-weight: 700; }
-    .modal-post-location { font-size: 11px; color: #777; }
 
-    .modal-post-img { width: 100%; aspect-ratio: 1; background: #a8d8ea; overflow: hidden; }
-    .modal-post-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ciencia-card.planti { border-top: 8px solid var(--menta-oscuro); }
+    .ciencia-card.digiti { border-top: 8px solid var(--durazno); }
 
-    .modal-post-actions {
-      display: flex; align-items: center; gap: 14px;
-      padding: 10px 14px 4px;
-    }
-    .action-btn {
-      font-size: 26px; cursor: pointer;
-      background: none; border: none;
-      transition: transform 0.15s; line-height: 1;
-    }
-    .action-btn:active { transform: scale(1.3); }
-    .action-btn.save   { margin-left: auto; }
-    .action-btn.liked  { animation: heartPop 0.4s ease; }
-
-    .modal-post-likes {
-      padding: 0 14px 4px;
-      font-size: 15px; font-weight: 700; color: #c0392b;
-    }
-    .modal-post-caption {
-      padding: 0 14px 6px;
-      font-size: 15px; line-height: 1.5; color: #1a1a1a;
-    }
-    .modal-post-caption .cap-user { font-weight: 700; }
-    .modal-post-caption .hashtag  { color: #00376b; }
-    .modal-post-date {
-      padding: 0 14px 8px;
-      font-size: 11px; color: #8e8e8e; text-transform: uppercase;
+    .ciencia-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--sombra-hover);
     }
 
-    .modal-post-comments { border-top: 1px solid #e0d9c0; padding: 8px 14px 10px; }
-    .comment {
-      display: flex; gap: 8px; padding: 6px 0;
-      border-bottom: 1px solid #faf5e4; align-items: flex-start;
-    }
-    .comment:last-child { border-bottom: none; }
-    .comment-avatar {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: #efefef;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px; flex-shrink: 0;
-    }
-    .comment-body { flex: 1; }
-    .comment-user { font-size: 13px; font-weight: 700; }
-    .comment-text { font-size: 13px; color: #1a1a1a; }
-    .comment-time { font-size: 11px; color: #8e8e8e; margin-top: 2px; }
-
-    .modal-add-comment {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px; border-top: 1px solid #e0d9c0;
-    }
-    .add-comment-avatar {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: #efefef; font-size: 16px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .add-comment-text {
-      font-size: 14px; color: #8e8e8e;
-      font-family: 'Caveat', cursive; cursor: pointer;
+    .ciencia-card .icono-grande {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 16px;
     }
 
-    .btn-close-modal {
-      background: none; border: none; cursor: pointer;
-      font-size: 22px; line-height: 1; color: #333;
-      padding: 4px; transition: transform 0.2s;
+    .ciencia-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
     }
-    .btn-close-modal:active { transform: scale(1.3) rotate(90deg); }
 
-    /* ================================
-       TOAST
-    ================================ */
-    .toast {
-      position: fixed; bottom: 24px; left: 50%;
-      transform: translateX(-50%) translateY(12px);
-      background: #2c3e50; color: #fff;
-      padding: 10px 22px; border-radius: 22px;
-      font-family: 'Caveat', cursive; font-size: 16px;
-      opacity: 0; transition: all 0.3s;
-      z-index: 400; pointer-events: none; white-space: nowrap;
+    .ciencia-card .ejemplos {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--texto-suave);
     }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+    .ciencia-card .ejemplos strong {
+      display: block;
+      color: var(--texto);
+      margin-bottom: 4px;
+    }
+
+    /* Huella SVG */
+    .huella {
+      display: block;
+      margin: 20px auto;
+      max-width: 180px;
+      transition: transform var(--transicion);
+    }
+
+    .ciencia-card:hover .huella {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* =====================================================
+       TABLA DE CUIDADOS
+       ===================================================== */
+    .cuidados-tabla-wrapper {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 0;
+      box-shadow: var(--sombra);
+      overflow: hidden;
+    }
+
+    .cuidados-encabezado {
+      background: linear-gradient(135deg, var(--durazno), var(--lavanda));
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .cuidados-encabezado h2 {
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    /* Cards para mobile */
+    .cuidados-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 24px;
+    }
+
+    .cuidado-card {
+      background: var(--crema-2);
+      border-radius: var(--radio-chico);
+      padding: 20px;
+      border-left: 5px solid var(--durazno);
+      transition: all var(--transicion);
+    }
+
+    .cuidado-card:nth-child(1) { border-left-color: #ff8a5b; }
+    .cuidado-card:nth-child(2) { border-left-color: #6cc4a3; }
+    .cuidado-card:nth-child(3) { border-left-color: #a685e0; }
+    .cuidado-card:nth-child(4) { border-left-color: #ffb3c6; }
+    .cuidado-card:nth-child(5) { border-left-color: #ffd93d; }
+
+    .cuidado-card:hover {
+      transform: translateX(6px);
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .cuidado-card .numero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: var(--durazno);
+      color: white;
+      border-radius: 50%;
+      font-weight: 900;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .cuidado-card h3 {
+      display: flex;
+      align-items: center;
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+    }
+
+    .cuidado-card .campo {
+      margin: 6px 0;
+      font-size: 0.92rem;
+    }
+
+    .cuidado-card .campo strong {
+      color: var(--durazno-oscuro);
+      display: inline-block;
+      min-width: 80px;
+    }
+
+    /* Tabla para desktop */
+    .cuidados-tabla {
+      display: none;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cuidados-tabla thead {
+      background: var(--durazno);
+      color: white;
+    }
+
+    .cuidados-tabla th, .cuidados-tabla td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--crema-2);
+      vertical-align: top;
+    }
+
+    .cuidados-tabla th {
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .cuidados-tabla tbody tr {
+      transition: background var(--transicion);
+    }
+
+    .cuidados-tabla tbody tr:nth-child(even) {
+      background: var(--crema-2);
+    }
+
+    .cuidados-tabla tbody tr:hover {
+      background: rgba(255, 185, 138, 0.2);
+    }
+
+    @media (min-width: 900px) {
+      .cuidados-cards { display: none; }
+      .cuidados-tabla { display: table; }
+    }
+
+    /* =====================================================
+       ENDOESQUELETO / COMPARATIVA
+       ===================================================== */
+    .huesos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .hueso-card {
+      background: var(--blanco);
+      border-radius: var(--radio-chico);
+      padding: 24px 20px;
+      box-shadow: var(--sombra);
+      transition: all var(--transicion);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hueso-card::after {
+      content: '🦴';
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      font-size: 4rem;
+      opacity: 0.08;
+    }
+
+    .hueso-card:hover {
+      transform: translateY(-6px) scale(1.02);
+    }
+
+    .hueso-card .animal {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .hueso-card .animal-emoji {
+      font-size: 2rem;
+    }
+
+    .hueso-card .animal-nombre {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .hueso-card .cantidad {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--durazno-oscuro);
+      line-height: 1;
+      margin: 8px 0;
+    }
+
+    .hueso-card .dato-extra {
+      font-size: 0.9rem;
+      color: var(--texto-suave);
+    }
+
+    /* =====================================================
+       BIBLIOGRAFÍA
+       ===================================================== */
+    .biblio {
+      background: linear-gradient(135deg, var(--crema-2), var(--blanco));
+      border-radius: var(--radio);
+      padding: 32px;
+      box-shadow: var(--sombra);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .biblio h3 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      color: var(--durazno-oscuro);
+    }
+
+    .biblio ul {
+      list-style: none;
+    }
+
+    .biblio li {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--durazno);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .biblio li:last-child {
+      border-bottom: none;
+    }
+
+    .biblio li::before {
+      content: '📚';
+      font-size: 1.2rem;
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    footer {
+      background: linear-gradient(135deg, var(--durazno), var(--lavanda));
+      color: white;
+      text-align: center;
+      padding: 60px 24px 40px;
+      margin-top: 60px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '🐾 🐾 🐾 🐾 🐾';
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      font-size: 2rem;
+      opacity: 0.3;
+      letter-spacing: 40px;
+    }
+
+    .footer-mensaje {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.6rem, 5vw, 2.6rem);
+      margin: 24px auto;
+      max-width: 700px;
+      line-height: 1.3;
+    }
+
+    .footer-autor {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    .footer-autor .firma {
+      color: white;
+      font-size: 1.6rem;
+    }
+
+    .footer-emoji {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .footer-info {
+      margin-top: 32px;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    /* =====================================================
+       FLOATING ELEMENTS
+       ===================================================== */
+    .float-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--durazno);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: var(--sombra);
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transicion);
+      opacity: 0;
+      transform: translateY(100px);
+    }
+
+    .float-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1) rotate(-10deg);
+      background: var(--durazno-oscuro);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--lavanda);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: var(--sombra);
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transicion);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(20deg);
+      background: var(--lavanda-oscuro);
+    }
+
+    /* =====================================================
+       LIGHTBOX
+       ===================================================== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      cursor: zoom-out;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 95%;
+      object-fit: contain;
+      border-radius: var(--radio);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      animation: zoomIn 0.4s ease;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: white;
+      color: var(--texto);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transicion);
+    }
+
+    .lightbox-close:hover {
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* =====================================================
+       PATA FLOTANTE (efecto click)
+       ===================================================== */
+    .paw-trail {
+      position: fixed;
+      font-size: 2rem;
+      pointer-events: none;
+      z-index: 9999;
+      animation: pawUp 1.2s ease-out forwards;
+    }
+
+    @keyframes pawUp {
+      0% { opacity: 1; transform: scale(0) rotate(0); }
+      20% { transform: scale(1.3) rotate(20deg); }
+      100% { opacity: 0; transform: scale(1) translateY(-100px) rotate(40deg); }
+    }
+
+    /* =====================================================
+       SCROLLBAR
+       ===================================================== */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--crema-2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--durazno);
+      border-radius: 6px;
+      border: 2px solid var(--crema-2);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--durazno-oscuro);
+    }
+
+    /* =====================================================
+       GALERÍA MOSAICO
+       ===================================================== */
+    .galeria-mosaico {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    @media (min-width: 600px) {
+      .galeria-mosaico { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (min-width: 900px) {
+      .galeria-mosaico { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    }
+
+    .galeria-item {
+      position: relative;
+      border-radius: var(--radio-chico);
+      overflow: hidden;
+      cursor: zoom-in;
+      box-shadow: var(--sombra);
+      transition: all var(--transicion);
+      background: var(--crema-2);
+    }
+
+    .galeria-item:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: var(--sombra-hover);
+      z-index: 2;
+    }
+
+    .galeria-item img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .galeria-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .galeria-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+      opacity: 0;
+      transition: opacity var(--transicion);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .galeria-item:hover .overlay {
+      opacity: 1;
+    }
+
+    /* =====================================================
+       SECCIÓN CONCLUSIÓN WRAPPER
+       ===================================================== */
+    .conclusion-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .conclusion-texto .firma-final {
+      display: block;
+      text-align: right;
+      font-size: 2rem;
+      margin-top: 16px;
+    }
+
+    /* =====================================================
+       UTILIDADES
+       ===================================================== */
+    .separador {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 1.4rem;
+      opacity: 0.5;
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <div class="ig-header anim-header">
-    <div class="ig-logo-icon">◯</div>
-    <div class="ig-title">Instagram</div>
-    <div class="ig-dots" onclick="showToast('⚙️ Configuración del Gral. San Martín')">···</div>
-  </div>
+  <!-- ====== NAVEGACIÓN FLOTANTE ====== -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="#caratula">🏠 Inicio</a>
+    <a href="#gatos">🐱 Mis gatos</a>
+    <a href="#historias">📸 Historias</a>
+    <a href="#ciencia">🔬 Ciencia</a>
+    <a href="#cuidados">💕 Cuidados</a>
+    <a href="#conclusion">✨ Conclusión</a>
+    <a href="#bibliografia">📚 Bibliografía</a>
+    <a href="#galeria">📷 Galería</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menú">☰</button>
+  </nav>
 
-  <!-- ===== PERFIL ===== -->
-  <div class="profile-section anim-profile">
+  <!-- ====== HERO ====== -->
+  <header class="hero">
+    <div class="hero-emoji" aria-hidden="true">🐱</div>
+    <h1>Mis Gatitos</h1>
+    <p class="subtitulo">Rocco, Tom y Bigote</p>
+    <p class="autora">Trabajo Práctico de <strong>Ciencias Naturales</strong> · <span class="firma">Brisa</span> 4to D</p>
+    <a href="#conclusion" class="hero-cta">
+      Conocer a mis gatos
+      <span aria-hidden="true">↓</span>
+    </a>
+    <div class="scroll-hint" aria-hidden="true">deslizá para ver más ↓</div>
+  </header>
 
-    <div class="avatar-box" onclick="openAvatar()">
-      <img src="foto_perfil.webp" alt="Gral. José de San Martín"/>
+  <!-- ====== CARÁTULA ====== -->
+  <section id="caratula" aria-label="Carátula del trabajo">
+    <div class="caratula reveal">
+      <h2>Trabajo Práctico: El Gato</h2>
+      <p class="categoria">Rocco, Tom y Bigote · Ciencias Naturales · 4to D · Brisa</p>
+      <img
+        src="1.webp"
+        alt="Carátula del trabajo práctico sobre el gato"
+        class="imagen-carpeta"
+        loading="lazy"
+        data-zoomable
+      />
+      <p><span class="firma" style="color:white; font-size:1.8rem;">♡ Brisa</span></p>
+    </div>
+  </section>
+
+  <!-- ====== MIS GATOS ====== -->
+  <section id="gatos" aria-label="Mis tres gatos">
+    <div class="seccion-titulo reveal">
+      <h2><span class="decoracion" aria-hidden="true">🐱</span> Mis tres gatos <span class="decoracion" aria-hidden="true">🐱</span></h2>
+      <p>Estos son mis grandes compañeros</p>
     </div>
 
-    <div class="profile-info-right">
-      <div class="name-box">
-        <div class="profile-name">José de San Martín</div>
+    <div class="gatos-grid">
+      <article class="gato-card reveal">
+        <span class="gato-badge" aria-hidden="true">🐱</span>
+        <img src="5.webp" alt="Rocco, el gato anaranjado, estirado y larguísimo" class="gato-foto" loading="lazy" data-zoomable />
+        <div class="gato-info">
+          <h3>Rocco</h3>
+          <p class="rol">El larguísimo · Anaranjado</p>
+          <p>Cuando lo estiramos mide casi <strong>1 metro de largo</strong>. Los gatos siameses son muy elásticos y flexibles gracias a sus <strong>230 huesos</strong>. ¡Es el gato más largo del mundo! (o eso cree él) 😸</p>
+        </div>
+      </article>
+
+      <article class="gato-card reveal">
+        <span class="gato-badge" aria-hidden="true">🐈‍⬛</span>
+        <img src="17.webp" alt="Tom, el gato blanco y negro, jugando en su pista" class="gato-foto" loading="lazy" data-zoomable />
+        <div class="gato-info">
+          <h3>Tom</h3>
+          <p class="rol">El atleta · Blanco y negro</p>
+          <p>Tom tiene un <strong>sistema locomotor increíble</strong>. Con su pista en forma de 8 ejercita sus músculos elásticos y sus 230 huesos. <strong>Digitígrado</strong>, salta hasta 5 veces su altura. 🏃‍♂️</p>
+        </div>
+      </article>
+
+      <article class="gato-card reveal">
+        <span class="gato-badge" aria-hidden="true">😺</span>
+        <img src="2.webp" alt="Bigote, el gato bicolor, descansando al sol" class="gato-foto" loading="lazy" data-zoomable />
+        <div class="gato-info">
+          <h3>Bigote</h3>
+          <p class="rol">El elegido · Bicolor</p>
+          <p>Bigote tiene pelaje bicolor y su <strong>bigote blanco</strong> es característico. Le gusta tomar sol para regular su temperatura. Es muy hábil y salta hasta 5 veces su altura. ☀️</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ====== HISTORIAS DE VIDA COTIDIANA ====== -->
+  <section id="historias" aria-label="Historias de la vida cotidiana con mis gatos">
+    <div class="seccion-titulo reveal">
+      <h2><span class="decoracion" aria-hidden="true">📸</span> Mi vida con ellos <span class="decoracion" aria-hidden="true">📸</span></h2>
+      <p>Observación directa del día a día</p>
+    </div>
+
+    <article class="historia reveal">
+      <img src="7.webp" alt="Bigote el día que llegó a casa bajo la lluvia" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">📖 La historia de Bigote</span>
+        <h3>Bigote nos eligió ♡</h3>
+        <p>Un día de lluvia, el <strong>13 de junio</strong>, Bigote nos esperaba en la puerta de casa. Estaba solito, con frío. Lo miramos, él nos miró, y entendimos. <em>No lo rescatamos nosotros a él, él nos rescató a nosotros.</em></p>
+        <p>Desde ese día es parte de nuestra familia. Lo amamos, lo cuidamos y le dimos un <strong>hogar para siempre</strong>.</p>
+        <div class="dato">💡 <strong>Dato:</strong> 13 de junio, día de lluvia. La historia más linda de la casa.</div>
       </div>
-      <div class="handle"
-           onclick="showToast('📋 ¡Seguí a @josedesanmartin_oficial!')">
-        @ josedesanmartin_oficial
+    </article>
+
+    <article class="historia reveal">
+      <img src="8.webp" alt="Bigote con su abriguito polar en invierno" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">🌡️ Cuidando la temperatura</span>
+        <h3>La temperatura de Bigote</h3>
+        <p>La temperatura normal de un gato es de <strong>38°C a 39,2°C</strong>, más alta que la nuestra (36,5°C a 37,5°C). Por eso sienten más el frío.</p>
+        <p>En invierno, Bigote necesita su <strong>abrigo de polar</strong> y su cajita calentita para no perder calor. Los gatos regulan su temperatura buscando lugares abrigados, acurrucándose y conservando energía.</p>
+        <div class="dato">🧥 <strong>Cuidarlos es amor:</strong> controlar que estén calentitos, secos y cómodos.</div>
       </div>
-      <div class="desc-below">
-        <div class="desc-text">
-          Libertador de Argentina,<br>Chile y Perú.
+    </article>
+
+    <article class="historia reveal">
+      <img src="2.webp" alt="Bigote tomando sol en el piso" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">☀️ Vida de gato</span>
+        <h3>Bigote descansando</h3>
+        <p>Mi gato Bigote tiene pelaje bicolor. Su bigote blanco es característico. Le gusta <strong>tomar sol para regular su temperatura</strong>.</p>
+        <div class="dato">🐾 <strong>Es muy hábil</strong> y salta hasta 5 veces su altura.</div>
+      </div>
+    </article>
+
+    <article class="historia reveal">
+      <img src="3.webp" alt="Tom comiendo pasto para purgarse" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">🌿 Comportamiento natural</span>
+        <h3>Tom purgándose</h3>
+        <p>Mi gato Tom come pasto para purgarse. Lo hace para <strong>eliminar los pelos que traga cuando se acicala</strong>. Es un comportamiento natural e instintivo.</p>
+        <div class="dato">🐾 Es <strong>digitígrado</strong> y muy ágil.</div>
+      </div>
+    </article>
+
+    <article class="historia reveal">
+      <img src="4.webp" alt="Rocco, Tom y Bigote juntos en casa" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">💕 El amor y los cuidados</span>
+        <h3>Los cuido todos los días</h3>
+        <p>Amo a mis gatos <strong>Rocco, Tom y Bigote</strong>. Los cuido dándoles comida, agua fresca, cariño y llevándolos al veterinario. Ellos me dan amor, ronroneos y compañía.</p>
+        <div class="dato">🐾 <strong>Tener una mascota es una responsabilidad</strong> y un compromiso para toda la vida.</div>
+      </div>
+    </article>
+
+    <article class="historia reveal">
+      <img src="6.webp" alt="Rocco usando sus piedritas sanitarias" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">🧼 Higiene</span>
+        <h3>La higiene de mi gato</h3>
+        <p>Rocco usa sus piedritas sanitarias todos los días. Los gatos son animales <strong>muy limpios e higiénicos</strong>. Tapan sus desechos por instinto.</p>
+        <p>Yo limpio sus bandejas para que estén cómodos y sanos. Es parte de cuidarlos con amor y responsabilidad.</p>
+      </div>
+    </article>
+
+    <article class="historia reveal">
+      <img src="9.webp" alt="Rocco y Tom compartiendo la misma silla" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">🐾 Convivencia</span>
+        <h3>Compartir el territorio</h3>
+        <p>En esta foto <strong>Rocco y Tom están compartiendo la misma silla</strong>. Los gatos son animales territoriales, pero cuando se llevan bien y se quieren, comparten su espacio. Se acompañan, se dan calor y se sienten seguros juntos.</p>
+        <div class="dato">♡ <strong>Compartir es parte de vivir en familia.</strong> Eso es amor y cuidados entre ellos y con nosotros.</div>
+      </div>
+    </article>
+
+    <article class="historia reveal">
+      <img src="10.webp" alt="La familia interespecie completa (gatos, perros, hámster y Brisa)" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">🐕🐹 Familia interespecie</span>
+        <h3>Mi familia casi completa</h3>
+        <p>Los gatos son territoriales, pero pueden convivir con perros si se crían con <strong>amor y respeto</strong>. Esto se llama <strong>convivencia interespecie</strong>.</p>
+        <p>Cuando comparten desde chicos, forman un grupo social, se comunican con olores, posturas y respetan el espacio del otro. <em>Compartir el territorio sin pelear es una muestra de adaptación y confianza.</em></p>
+      </div>
+    </article>
+
+    <article class="historia reveal">
+      <img src="12.webp" alt="Lola la hámster, el miembro más chiquito de la familia" class="historia-foto" loading="lazy" data-zoomable />
+      <div class="historia-texto">
+        <span class="etiqueta">🐹 La más chiquita</span>
+        <h3>Lola la hámster ♡</h3>
+        <p>Les presento a <strong>Lola la hámster</strong>, el miembro más chiquito de nuestra familia interespecie. ¡La familia ya está completa!</p>
+        <ul style="list-style:none; padding:0; margin-top:12px;">
+          <li>🌙 Es un <strong>roedor nocturno</strong>, de la familia Cricetidae.</li>
+          <li>🐾 Guarda comida en sus <strong>abazones</strong> (cachetes).</li>
+          <li>🧹 Vive en su casita rosada, con viruta limpia, su ruedita y su comedero amarillo.</li>
+          <li>🌿 No se la junta con los gatos y perros, cada uno en su espacio seguro.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- ====== CIENCIA ====== -->
+  <section id="ciencia" aria-label="Sección de ciencia">
+    <div class="seccion-titulo reveal">
+      <h2><span class="decoracion" aria-hidden="true">🔬</span> Ciencia divertida <span class="decoracion" aria-hidden="true">🔬</span></h2>
+      <p>¿Cómo caminamos? · ¿Cuántos huesos tenemos?</p>
+    </div>
+
+    <h3 style="text-align:center; margin-bottom:24px; font-size:1.4rem; color:var(--durazno-oscuro);">¿Cómo caminamos?</h3>
+    <p style="text-align:center; max-width:600px; margin:0 auto 32px; color:var(--texto-suave);">Plantígrados vs Digitígrados</p>
+
+    <div class="ciencia-comparacion">
+      <div class="ciencia-card planti reveal">
+        <span class="icono-grande" aria-hidden="true">🦶</span>
+        <h3>PLANTÍGRADOS</h3>
+        <p>Apoyamos <strong>toda la planta del pie</strong>: talón, arco y dedos. ¡Todo el pie toca el suelo!</p>
+
+        <!-- Huella PLANTÍGRADA: pie humano completo (talón + arco + 5 dedos)
+             Muestra TODO el pie apoyado en el suelo, de la planta. -->
+        <svg class="huella" viewBox="0 0 140 240" xmlns="http://www.w3.org/2000/svg" aria-label="Huella plantígrada de pie humano">
+          <!-- Talón (parte de abajo) -->
+          <ellipse cx="70" cy="195" rx="32" ry="38" fill="var(--menta-oscuro)" opacity="0.85"/>
+          <!-- Arco del pie (curva interior) -->
+          <path d="M 38 195 Q 38 130 70 130 Q 102 130 102 195 Z" fill="var(--menta-oscuro)" opacity="0.85"/>
+          <!-- Bola del pie (parte ancha arriba del arco) -->
+          <ellipse cx="70" cy="100" rx="40" ry="28" fill="var(--menta-oscuro)" opacity="0.85"/>
+          <!-- 5 Dedos del pie -->
+          <ellipse cx="30" cy="62" rx="9" ry="13" fill="var(--menta-oscuro)" opacity="0.85"/>
+          <ellipse cx="50" cy="48" rx="9" ry="14" fill="var(--menta-oscuro)" opacity="0.85"/>
+          <ellipse cx="70" cy="44" rx="10" ry="15" fill="var(--menta-oscuro)" opacity="0.85"/>
+          <ellipse cx="90" cy="48" rx="9" ry="14" fill="var(--menta-oscuro)" opacity="0.85"/>
+          <ellipse cx="110" cy="62" rx="9" ry="13" fill="var(--menta-oscuro)" opacity="0.85"/>
+          <!-- Etiqueta pequeña -->
+          <text x="70" y="225" text-anchor="middle" font-family="Nunito, sans-serif" font-size="11" font-weight="700" fill="var(--texto)">PLANTÍGRADO</text>
+        </svg>
+
+        <div class="ejemplos">
+          <strong>Ejemplos:</strong>
+          👣 Brisa (humana)<br>
+          👣 Lola (hámster)
         </div>
       </div>
-      <div class="padre-badge">"PADRE DE LA PATRIA"</div>
-    </div>
-  </div>
 
-  <!-- ===== STATS ===== -->
-  <div class="stats-row anim-stats">
-    <div class="stat-badge followers"
-         onclick="showToast('👥 ¡10.000 patriotas lo siguen!')">
-      <span class="stat-icon">👥</span>
-      <div>
-        <div class="stat-number" id="cnt-seguidores">0</div>
-        <div class="stat-label">Seguidores</div>
-      </div>
-    </div>
-    <div class="stat-badge following"
-         onclick="showToast('👤 Sigue a 200 compatriotas y aliados')">
-      <span class="stat-icon">👤</span>
-      <div>
-        <div class="stat-number" id="cnt-siguiendo">0</div>
-        <div class="stat-label">Siguiendo</div>
-      </div>
-    </div>
-    <div class="stat-badge posts"
-         onclick="showToast('📷 24 momentos históricos inmortalizados')">
-      <span class="stat-icon">📷</span>
-      <div>
-        <div class="stat-number" id="cnt-posts">0</div>
-        <div class="stat-label">Posts</div>
-      </div>
-    </div>
-  </div>
+      <div class="ciencia-card digiti reveal">
+        <span class="icono-grande" aria-hidden="true">🐾</span>
+        <h3>DIGITÍGRADOS</h3>
+        <p>Apoyan <strong>solo los dedos</strong>, por eso caminan sigilosos y sin ruido, como en puntitas de pie.</p>
 
-  <!-- ===== SECCIÓN MEDIA ===== -->
-  <div class="middle-section anim-middle">
+        <!-- Huella DIGITÍGRADA: huella clásica de gato
+             4 cojines digitales (arriba) + 1 cojín central (abajo). SIN talón.
+             Muestra solo los dedos apoyados. -->
+        <svg class="huella" viewBox="0 0 140 240" xmlns="http://www.w3.org/2000/svg" aria-label="Huella digitígrada de gato">
+          <!-- 4 cojines digitales (los deditos del gato) -->
+          <ellipse cx="38" cy="80" rx="13" ry="18" fill="var(--durazno)" opacity="0.9"/>
+          <ellipse cx="64" cy="55" rx="13" ry="20" fill="var(--durazno)" opacity="0.9"/>
+          <ellipse cx="92" cy="55" rx="13" ry="20" fill="var(--durazno)" opacity="0.9"/>
+          <ellipse cx="118" cy="80" rx="13" ry="18" fill="var(--durazno)" opacity="0.9"/>
+          <!-- Cojín central (la almohadilla grande) -->
+          <path d="M 70 120
+                   C 30 120, 30 180, 70 195
+                   C 110 180, 110 120, 70 120 Z"
+                fill="var(--durazno)" opacity="0.9"/>
+          <!-- Etiqueta pequeña -->
+          <text x="70" y="225" text-anchor="middle" font-family="Nunito, sans-serif" font-size="11" font-weight="700" fill="var(--texto)">DIGITÍGRADO</text>
+        </svg>
 
-    <!-- Columna izquierda -->
-    <div class="left-column">
-
-      <!-- Compas de Libertad -->
-      <div class="compas-box">
-        <div class="compas-title">⚔️ Compas de Libertad</div>
-        <div class="compas-item"
-             onclick="showToast('🎖️ Manuel Belgrano: creador de la Bandera Argentina 🇦🇷')">
-          🎖️ Gral. Belgrano
-        </div>
-        <div class="compas-item"
-             onclick="showToast('🇨🇱 Bernardo O\'Higgins: liberó Chile junto al Gral!')">
-          🏔️ B. O'Higgins
-        </div>
-        <div class="compas-item"
-             onclick="showToast('🌎 Simón Bolívar: libertador del norte de América')">
-          🌎 Simón Bolívar
+        <div class="ejemplos">
+          <strong>Ejemplos:</strong>
+          🐾 Bigote, Rocco y Tom (gatos)<br>
+          🐾 Toby, Blanca, Mily y More (perros salchicha)
         </div>
       </div>
-      
-      <!-- Posts -->
-      <div>
-        <div class="posts-label">POSTS:</div>
-        <div class="posts-grid-hand">
+    </div>
 
-          <div class="post-card" onclick="openPost(0)">
-            <img src="cruce_andes.webp" alt="Cruce de los Andes"/>
-            <div class="post-hover-overlay">❤️</div>
-            <div class="post-caption">Cruce de los Andes</div>
+    <h3 style="text-align:center; margin:48px 0 24px; font-size:1.4rem; color:var(--durazno-oscuro);">🦴 Todos tenemos endoesqueleto… ¡pero diferente cantidad de huesos!</h3>
+
+    <div class="huesos-grid">
+      <div class="hueso-card reveal">
+        <div class="animal">
+          <span class="animal-emoji">👧</span>
+          <span class="animal-nombre">Brisa (humana)</span>
+        </div>
+        <div class="cantidad">206</div>
+        <div class="dato-extra">huesos en adulto (270 al nacer, algunos se fusionan). Cráneo, columna vertebral, costillas.</div>
+      </div>
+
+      <div class="hueso-card reveal">
+        <div class="animal">
+          <span class="animal-emoji">🐱</span>
+          <span class="animal-nombre">Bigote, Rocco y Tom</span>
+        </div>
+        <div class="cantidad">~244</div>
+        <div class="dato-extra">súper flexibles. 30 vértebras, cola larga con muchos huesitos para equilibrarse, garras retráctiles.</div>
+      </div>
+
+      <div class="hueso-card reveal">
+        <div class="animal">
+          <span class="animal-emoji">🐶</span>
+          <span class="animal-nombre">Toby, Blanca, Mily y More</span>
+        </div>
+        <div class="cantidad">~320</div>
+        <div class="dato-extra">varía por raza. Columna muy larga por ser salchicha, 42 dientes, patitas cortas.</div>
+      </div>
+
+      <div class="hueso-card reveal">
+        <div class="animal">
+          <span class="animal-emoji">🐹</span>
+          <span class="animal-nombre">Lola (hámster)</span>
+        </div>
+        <div class="cantidad">~200</div>
+        <div class="dato-extra">huesitos chiquititos. Las bolsitas de los cachetes (abazones) no tienen hueso, cola muy cortita.</div>
+      </div>
+    </div>
+
+    <div class="separador" aria-hidden="true">♡ ☆ ♡ ☆ ♡</div>
+
+    <h3 style="text-align:center; margin-bottom:24px; font-size:1.4rem; color:var(--durazno-oscuro);">Cuadro comparativo: toda mi familia</h3>
+
+    <div class="cuidados-tabla-wrapper reveal">
+      <div class="cuidados-encabezado">
+        <h2>Similitudes y diferencias · Mi familia interespecie</h2>
+      </div>
+      <table class="cuidados-tabla" style="display:table;">
+        <thead>
+          <tr>
+            <th>Integrante</th>
+            <th>Hábitat</th>
+            <th>Locomoción</th>
+            <th>Característica</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Brisa (humana)</strong></td>
+            <td>Doméstico, casa</td>
+            <td>Bípeda, camina en 2 patas</td>
+            <td>Mamífera, razona</td>
+          </tr>
+          <tr>
+            <td><strong>Bigote, Rocco, Tom (gatos)</strong></td>
+            <td>Doméstico, cajas y lugares calentitos</td>
+            <td>Cuadrúpedos, sigilosos, saltan</td>
+            <td>Mamíferos, carnívoros, 38-39,2°C</td>
+          </tr>
+          <tr>
+            <td><strong>Toby, Blanca, Mily y More (perros)</strong></td>
+            <td>Doméstico, manada</td>
+            <td>Cuadrúpedos, corren y olfatean</td>
+            <td>Mamíferos, sociables</td>
+          </tr>
+          <tr>
+            <td><strong>Lola (hámster)</strong></td>
+            <td>Doméstico, jaula casita rosada</td>
+            <td>Cuadrúpeda chiquita, corre en ruedita</td>
+            <td>Roedor nocturna, guarda en abazones</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="cuidados-cards" style="display:grid;">
+        <div class="cuidado-card">
+          <h3><span class="numero">1</span> Brisa (humana)</h3>
+          <div class="campo"><strong>Hábitat:</strong> Doméstico, casa</div>
+          <div class="campo"><strong>Locomoción:</strong> Bípeda, camina en 2 patas</div>
+          <div class="campo"><strong>Característica:</strong> Mamífera, razona</div>
+        </div>
+        <div class="cuidado-card">
+          <h3><span class="numero">2</span> Bigote, Rocco, Tom (gatos)</h3>
+          <div class="campo"><strong>Hábitat:</strong> Doméstico, cajas y lugares calentitos</div>
+          <div class="campo"><strong>Locomoción:</strong> Cuadrúpedos, sigilosos, saltan</div>
+          <div class="campo"><strong>Característica:</strong> Mamíferos, carnívoros, 38-39,2°C</div>
+        </div>
+        <div class="cuidado-card">
+          <h3><span class="numero">3</span> Toby, Blanca, Mily y More (perros)</h3>
+          <div class="campo"><strong>Hábitat:</strong> Doméstico, manada</div>
+          <div class="campo"><strong>Locomoción:</strong> Cuadrúpedos, corren y olfatean</div>
+          <div class="campo"><strong>Característica:</strong> Mamíferos, sociables</div>
+        </div>
+        <div class="cuidado-card">
+          <h3><span class="numero">4</span> Lola (hámster)</h3>
+          <div class="campo"><strong>Hábitat:</strong> Doméstico, jaula casita rosada</div>
+          <div class="campo"><strong>Locomoción:</strong> Cuadrúpeda chiquita, corre en ruedita</div>
+          <div class="campo"><strong>Característica:</strong> Roedora nocturna, guarda en abazones</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== GALERÍA EXTRA (imágenes complementarias) ====== -->
+  <section id="galeria" aria-label="Galería de imágenes">
+    <div class="seccion-titulo reveal">
+      <h2><span class="decoracion" aria-hidden="true">📷</span> Galería <span class="decoracion" aria-hidden="true">📷</span></h2>
+      <p>Más momentos de nuestra familia</p>
+    </div>
+
+    <div class="galeria-mosaico">
+      <div class="galeria-item reveal">
+        <img src="1.webp" alt="Carátula" loading="lazy" data-zoomable />
+        <div class="overlay">Carátula</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="11.webp" alt="Tabla de cuidados" loading="lazy" data-zoomable />
+        <div class="overlay">Tabla de cuidados</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="13.webp" alt="Plantígrados vs Digitígrados" loading="lazy" data-zoomable />
+        <div class="overlay">¿Cómo caminamos?</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="14.webp" alt="Endoesqueleto" loading="lazy" data-zoomable />
+        <div class="overlay">Endoesqueleto</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="16.webp" alt="Cuadro comparativo" loading="lazy" data-zoomable />
+        <div class="overlay">Cuadro comparativo</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="18.webp" alt="Mi familia interespecie" loading="lazy" data-zoomable />
+        <div class="overlay">Mi familia interespecie</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TABLA DE CUIDADOS ====== -->
+  <section id="cuidados" aria-label="Tabla de cuidados del gato doméstico">
+    <div class="seccion-titulo reveal">
+      <h2><span class="decoracion" aria-hidden="true">💕</span> Cuidados del gato <span class="decoracion" aria-hidden="true">💕</span></h2>
+      <p>Lo que mi familia hace por ellos cada día</p>
+    </div>
+
+    <div class="cuidados-tabla-wrapper reveal">
+      <div class="cuidados-encabezado">
+        <h2>Tabla de Cuidados · El Gato Doméstico</h2>
+      </div>
+
+      <!-- Cards para mobile -->
+      <div class="cuidados-cards">
+        <div class="cuidado-card">
+          <h3><span class="numero">1</span> Temperatura</h3>
+          <div class="campo"><strong>Necesita:</strong> 38 a 39,2°C, lugar calentito</div>
+          <div class="campo"><strong>¿Por qué?</strong> Los gatos son mamíferos y mantienen su temperatura corporal estable entre 38 a 39,2°C para que su organismo funcione bien</div>
+          <div class="campo"><strong>¿Cómo lo cuido?</strong> Caja con mantita y abriguito polar si hace frío en Mar del Plata, invierno</div>
+          <div class="campo"><strong>Frecuencia:</strong> Diario / según clima</div>
+        </div>
+
+        <div class="cuidado-card">
+          <h3><span class="numero">2</span> Alimentación</h3>
+          <div class="campo"><strong>Necesita:</strong> Alimento balanceado para gatos, agua fresca siempre</div>
+          <div class="campo"><strong>¿Por qué?</strong> Son carnívoros estrictos, necesitan proteína animal para crecer fuertes y tener energía</div>
+          <div class="campo"><strong>¿Cómo lo cuido?</strong> Servir alimento balanceado + recipiente con agua limpia y fresca todos los días</div>
+          <div class="campo"><strong>Frecuencia:</strong> Diario, agua siempre disponible</div>
+        </div>
+
+        <div class="cuidado-card">
+          <h3><span class="numero">3</span> Descanso y Seguridad</h3>
+          <div class="campo"><strong>Necesita:</strong> 12 a 16 horas de sueño, lugar seguro y tranquilo</div>
+          <div class="campo"><strong>¿Por qué?</strong> Dormir mucho es normal, ayuda a su crecimiento y fortalece su sistema inmune</div>
+          <div class="campo"><strong>¿Cómo lo cuido?</strong> Proveer una caja cerrada pequeña con manta, en lugar tranquilo y sin ruidos</div>
+          <div class="campo"><strong>Frecuencia:</strong> Diario, todo el día</div>
+        </div>
+
+        <div class="cuidado-card">
+          <h3><span class="numero">4</span> Higiene</h3>
+          <div class="campo"><strong>Necesita:</strong> Caja de piedritas limpia, cepillado suave</div>
+          <div class="campo"><strong>¿Por qué?</strong> Mantener limpio previene enfermedades y parásitos. Los gatos se limpian solos su pelaje</div>
+          <div class="campo"><strong>¿Cómo lo cuido?</strong> Limpiar la caja de piedritas diariamente y cepillar su pelo con cepillo suave 2-3 veces por semana</div>
+          <div class="campo"><strong>Frecuencia:</strong> Limpieza diaria · Cepillado 2-3 veces por semana</div>
+        </div>
+
+        <div class="cuidado-card">
+          <h3><span class="numero">5</span> Amor y Territorio</h3>
+          <div class="campo"><strong>Necesita:</strong> Comparten si hay confianza, respetar su espacio, juegos y mimos</div>
+          <div class="campo"><strong>¿Por qué?</strong> Necesitan sentirse seguros y queridos para reducir el estrés y estar felices</div>
+          <div class="campo"><strong>¿Cómo lo cuido?</strong> Jugar con juguetes, dar mimos cuando se acerque, respetar cuando quiere estar solo</div>
+          <div class="campo"><strong>Frecuencia:</strong> Diario · Momentos de juego y cariño</div>
+        </div>
+      </div>
+
+      <!-- Tabla para desktop -->
+      <table class="cuidados-tabla">
+        <thead>
+          <tr>
+            <th>Necesidad</th>
+            <th>¿Qué necesita?</th>
+            <th>¿Por qué? (Dato científico)</th>
+            <th>¿Cómo lo cuido yo?</th>
+            <th>Frecuencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Temperatura</strong></td>
+            <td>38 a 39,2°C, lugar calentito</td>
+            <td>Los gatos son mamíferos y mantienen su temperatura corporal estable entre 38 a 39,2°C para que su organismo funcione bien</td>
+            <td>Caja con mantita y abriguito polar si hace frío en Mar del Plata, invierno</td>
+            <td>Diario / según clima</td>
+          </tr>
+          <tr>
+            <td><strong>2. Alimentación</strong></td>
+            <td>Alimento balanceado para gatos, agua fresca siempre</td>
+            <td>Son carnívoros estrictos, necesitan proteína animal para crecer fuertes y tener energía</td>
+            <td>Servir alimento balanceado + recipiente con agua limpia y fresca todos los días</td>
+            <td>Diario, agua siempre disponible</td>
+          </tr>
+          <tr>
+            <td><strong>3. Descanso y Seguridad</strong></td>
+            <td>12 a 16 horas de sueño, lugar seguro y tranquilo</td>
+            <td>Dormir mucho es normal, ayuda a su crecimiento y fortalece su sistema inmune</td>
+            <td>Proveer una caja cerrada pequeña con manta, en lugar tranquilo y sin ruidos</td>
+            <td>Diario, todo el día</td>
+          </tr>
+          <tr>
+            <td><strong>4. Higiene</strong></td>
+            <td>Caja de piedritas limpia, cepillado suave</td>
+            <td>Mantener limpio previene enfermedades y parásitos. Los gatos se limpian solos su pelaje</td>
+            <td>Limpiar la caja de piedritas diariamente y cepillar su pelo con cepillo suave 2-3 veces por semana</td>
+            <td>Limpieza diaria · Cepillado 2-3 veces por semana</td>
+          </tr>
+          <tr>
+            <td><strong>5. Amor y Territorio</strong></td>
+            <td>Comparten si hay confianza, respetar su espacio, juegos y mimos</td>
+            <td>Necesitan sentirse seguros y queridos para reducir el estrés y estar felices</td>
+            <td>Jugar con juguetes, dar mimos cuando se acerque, respetar cuando quiere estar solo</td>
+            <td>Diario · Momentos de juego y cariño</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ====== CONCLUSIÓN (HTML LIMPIO) ====== -->
+  <section id="conclusion" aria-label="Conclusión del trabajo">
+    <div class="seccion-titulo reveal">
+      <h2><span class="decoracion" aria-hidden="true">✨</span> Conclusión <span class="decoracion" aria-hidden="true">✨</span></h2>
+      <p>Lo que aprendí sobre mis gatitos</p>
+    </div>
+
+    <div class="conclusion-wrapper">
+      <div class="conclusion-texto reveal">
+        <p>El <strong>gato doméstico</strong>, cuyo nombre científico es <em>Felis catus</em>, pertenece a la familia de los <strong>felinos</strong>. Tiene un sistema locomotor perfecto y único. Está formado por su esqueleto liviano con <strong>230 huesos</strong> que le da sostén, y por sus <strong>músculos elásticos y fuertes</strong> que le dan fuerza para moverse y desplazarse de formas increíbles.</p>
+
+        <p>Camina silencioso apoyando solo los dedos (<strong>digitígrado</strong>), corre muy rápido, <strong>s alta hasta 5 veces su altura</strong>, trepa con sus <strong>garras retráctiles</strong> y siempre cae parado gracias a su <strong>reflejo de enderezamiento</strong> y a su cola que usa como balancín para mantener el equilibrio.</p>
+
+        <p>Todo su cuerpo está preparado para ser un gran cazador y acróbata. Por eso debemos cuidarlo con <strong>buena alimentación con proteínas</strong> para sus músculos, con <strong>juego todos los días</strong> para que ejercite y con <strong>controles veterinarios</strong>.</p>
+
+        <p>Tener gatitos en mi familia es un <strong>compromiso de amor y de responsabilidad para toda la vida</strong>. Son mis mascotas preferidas. <strong>Roco y Tom son mis grandes compañeros junto a Bigote y los amo mucho.</strong></p>
+
+        <div class="datos-grid">
+          <div class="dato-card">
+            <span class="emoji">🦴</span>
+            <span class="titulo">230 huesos</span>
+            <span class="valor">más flexibles que los nuestros (206)</span>
           </div>
-
-          <div class="post-card" onclick="openPost(1)">
-            <img src="jose_mercedita.webp" alt="Con mi hija Mercedes"/>
-            <div class="post-hover-overlay">❤️</div>
-            <div class="post-caption">Con mi hija Mercedes</div>
+          <div class="dato-card">
+            <span class="emoji">🤸</span>
+            <span class="titulo">Salta 5× su altura</span>
+            <span class="valor">gracias a sus músculos elásticos</span>
           </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Columna derecha -->
-    <div class="right-panels">
-
-      <!-- Siguiendo -->
-      <div class="siguiendo-box">
-        <div class="siguiendo-title">Siguiendo</div>
-        <div class="siguiendo-item"
-             onclick="showToast('🇦🇷 Argentina libre desde el 9 de Julio de 1816!')">
-          🇦🇷 Argentina
-        </div>
-        <div class="siguiendo-item"
-             onclick="showToast('🇨🇱 Chile libre desde el 12 de Febrero de 1818!')">
-          🇨🇱 Chile
-        </div>
-        <div class="siguiendo-item"
-             onclick="showToast('🇵🇪 Perú libre desde el 28 de Julio de 1821!')">
-          🇵🇪 Perú
-        </div>
-        <div class="siguiendo-item"
-             onclick="openAlumnas()">
-             <!-- onclick="showToast('🏫 ¡El 4to D IIQ estudia su historia!')" -->
-          🏫 4to D IIQ
-        </div>
-        <div class="siguiendo-item"
-             onclick="showToast('🤝 ¡Los Compas de Libertad, siempre juntos!')">
-          ⚔️ Compas de Libertad
-        </div>
-      </div>
-
-      <!-- Seguidores -->
-      <div class="seguidores-box">
-        <div class="seguidores-title">Seguidores</div>
-
-        <div class="seguidor-item"
-             onclick="showToast('⚔️ Los Granaderos: sus soldados de élite')">
-          <span class="seguidor-bullet">●</span>Granaderos
-        </div>
-        <div class="seguidor-item"
-             onclick="showToast('🏔️ Cruzaron los Andes juntos en 1817')">
-          <span class="seguidor-bullet">●</span>Ejército de los Andes
-        </div>
-        <div class="seguidor-item"
-             onclick="showToast('🍇 Mendoza lo apoyó con soldados y recursos')">
-          <span class="seguidor-bullet">●</span>Pueblo de Mendoza
-        </div>
-        <div class="seguidor-item"
-             onclick="showToast('👧 Merceditas: el amor más grande de su vida')">
-          <span class="seguidor-bullet">●</span>Merceditas
-        </div>
-        <div class="seguidor-item"
-             onclick="showToast('💙 Remedios de Escalada: su amada esposa')">
-          <span class="seguidor-bullet">●</span>Remedios
-        </div>
-
-        <hr class="seguidor-divider"/>
-
-        <div class="seguidor-item"
-             onclick="showToast('👩‍🏫 ¡Gracias Profe Pablo por enseñarnos historia!')">
-          <span class="seguidor-bullet">⭐</span>Profe Pablo
-        </div>
-        <div class="seguidor-item"
-             onclick="showToast('👨‍🏫 ¡Gracias Profe Mailén por tu dedicación!')">
-          <span class="seguidor-bullet">⭐</span>Profe Mailén
-        </div>
-        <div class="seguidor-item"
-             onclick="openAlumnas()">
-             <!-- onclick="showToast('🎒 ¡El 4to D IIQ hizo este Instagram con amor! 🇦🇷')" -->
-          <span class="seguidor-bullet">🎒</span>4to D IIQ
-        </div>
-
-      </div>
-
-      <!-- Frase inspiracional de los chicos -->
-      <div class="frase-inspiracional"
-           onclick="showToast('💡 ¡Frase propia del 4to D IIQ!')">
-        <strong>"Primero LIBRES;</strong>
-         todo lo demás, después."
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ===== DATOS BIOGRÁFICOS ===== -->
-  <div class="datos-box anim-datos">
-    <div class="datos-title">Datos Biográficos</div>
-    <div class="dato-item"
-         onclick="showToast('🎂 Nació el 25/02/1778 en Yapeyú, Corrientes 🇦🇷')">
-      <span class="dato-bullet">●</span>
-      <span class="dato-fecha">25/2/1778</span>
-      <span>● Nació en Yapeyú</span>
-    </div>
-    <div class="dato-item"
-         onclick="showToast('🕊️ Falleció el 17/08/1850 en Boulogne-sur-Mer, Francia 🇫🇷')">
-      <span class="dato-bullet">●</span>
-      <span class="dato-fecha">17/8/1850</span>
-      <span>● Falleció en Francia</span>
-    </div>
-  </div>
-
-  <!-- ===== FRASES CÉLEBRES ===== -->
-  <div class="frases-box anim-frases">
-    <div class="deco-checks">✓ + ✓ ✓ ✓ + ✓</div>
-    <div class="frases-title">Frases célebres 🕊️</div>
-
-    <div class="frase-item"
-         onclick="showToast('💬 Su frase más famosa. ¡Aprendétela de memoria!')">
-      <span class="frase-bullet">»</span>
-      <span><span class="frase-hl">"Seamos libres, que lo demás no importa nada!"</span> ✓</span>
-    </div>
-    <div class="frase-item"
-         onclick="showToast('⚖️ La conciencia por encima de todo')">
-      <span class="frase-bullet">●</span>
-      <span>"La conciencia es el mejor juez que tiene un hombre."</span>
-    </div>
-    <div class="frase-item"
-         onclick="showToast('🗽 La libertad como el valor más importante')">
-      <span class="frase-bullet">●</span>
-      <span><span class="frase-hl">"Mi honor se llama libertad."</span></span>
-    </div>
-  </div>
-
-  <!-- ===== FIRMA ===== -->
-  <div class="footer-made anim-footer">
-    ✏️ Hecho con amor por <b><a onclick="openAlumnas()">4to D IIQ</a></b> • 17 de Agosto 🇦🇷<br>
-  </div>
-
-  <!-- ===== MODAL AVATAR ===== -->
-  <div class="modal-overlay" id="avatarModal" onclick="closeAvatar()">
-    <div class="modal-avatar-inner" onclick="event.stopPropagation()">
-      <button class="btn-close-modal"
-              onclick="closeAvatar()"
-              style="position:absolute;top:8px;right:8px;
-                     background:#c0392b;color:#fff;border-radius:50%;
-                     width:32px;height:32px;font-size:18px;z-index:10;">✕</button>
-      <img src="sanmartin_datos.webp" alt="José de San Martín - Padre de la Patria">
-      <div class="modal-avatar-footer">
-        🎖️ José de San Martín · @josedesanmartin_oficial
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== MODAL POST ===== -->
-  <div class="modal-overlay" id="postModal" onclick="handleModalClick(event)">
-    <div class="modal-post-inner" onclick="event.stopPropagation()">
-
-      <div class="modal-post-header">
-        <div class="modal-post-user">
-          <div class="modal-post-avatar">
-            <img src="foto_perfil.webp" alt="avatar"/>
+          <div class="dato-card">
+            <span class="emoji">🐾</span>
+            <span class="titulo">Digitígrado</span>
+            <span class="valor">camina en puntitas, sin ruido</span>
           </div>
-          <div>
-            <div class="modal-post-username">gral.sanmartin ✓</div>
-            <div class="modal-post-location" id="modalLocation"></div>
-          </div>
-        </div>
-        <button class="btn-close-modal" onclick="closePost()">✕</button>
-      </div>
-
-      <div class="modal-post-img" id="modalImgArea"></div>
-
-      <div class="modal-post-actions">
-        <button class="action-btn" id="likeBtn" onclick="toggleLike()">🤍</button>
-        <button class="action-btn"
-                onclick="showToast('💬 ¡Los comentarios están llenos de patriotismo!')">💬</button>
-        <button class="action-btn"
-                onclick="showToast('📤 ¡Compartí la historia del Gral!')">📤</button>
-        <button class="action-btn save"
-                onclick="showToast('🔖 ¡Guardado en tu colección patriótica!')">🔖</button>
-      </div>
-
-      <div class="modal-post-likes" id="modalLikes"></div>
-
-      <div class="modal-post-caption">
-        <span class="cap-user">gral.sanmartin </span>
-        <span id="modalCaption"></span>
-      </div>
-
-      <div class="modal-post-date" id="modalDate"></div>
-
-      <div class="modal-post-comments" id="modalComments"></div>
-
-      <div class="modal-add-comment">
-        <div class="add-comment-avatar">😊</div>
-        <div class="add-comment-text"
-             onclick="showToast('✏️ ¡Escribí tu comentario patriótico!')">
-          Añadí un comentario...
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ===== MODAL ALUMNAS ===== -->
-<div class="modal-overlay" id="alumnaModal" onclick="closeAlumnas()">
-  <div style="
-    width: 90%;
-    max-width: 340px;
-    background: #fef9e7;
-    border: 4px solid #c0392b;
-    border-radius: 14px;
-    overflow: hidden;
-    animation: popIn 0.25s ease;
-    position: relative;
-    font-family: 'Caveat', cursive;
-  " onclick="event.stopPropagation()">
-
-    <!-- Botón cerrar -->
-    <button onclick="closeAlumnas()" style="
-      position: absolute; top: 8px; right: 8px;
-      background: #c0392b; color: white; border: none;
-      border-radius: 50%; width: 32px; height: 32px;
-      font-size: 18px; font-weight: 700;
-      cursor: pointer; z-index: 10; line-height: 1;
-      font-family: 'Caveat', cursive;
-    ">✕</button>
-
-    <!-- Header -->
-    <div style="
-      background: #c0392b;
-      padding: 16px 14px 12px;
-      text-align: center;
-    ">
-      <div style="font-size: 36px; margin-bottom: 4px;">🎒✏️</div>
-      <div style="
-        font-size: 22px; font-weight: 700;
-        color: #f9e400; line-height: 1.2;
-      ">4to D IIQ</div>
-      <div style="font-size: 14px; color: #fff; opacity: 0.9;">
-        Las autoras de este Instagram 🇦🇷
-      </div>
-    </div>
-
-    <!-- Lista de alumnas -->
-    <div style="padding: 16px 20px;">
-
-      <div style="
-        font-size: 13px; color: #888;
-        text-align: center; margin-bottom: 12px;
-        font-family: 'Patrick Hand', cursive;
-      ">
-        ✨ Hicieron este trabajo con amor el 17 de agosto ✨
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        
-        <div style="
-          display: flex; align-items: center; gap: 12px;
-          background: #fff; border: 2px solid #a8d8ea;
-          border-radius: 10px; padding: 8px 12px;
-        ">
-          <span style="font-size: 26px;">🌟</span>
-          <div>
-            <div style="font-size: 20px; font-weight: 700; color: #1a1a1a;">Alma Martino</div>
-            <!-- div style="font-size: 12px; color: #888; font-family: 'Patrick Hand', cursive;">
-              Diseñadora & patriota
-            </div -->
+          <div class="dato-card">
+            <span class="emoji">🌡️</span>
+            <span class="titulo">38 a 39,2°C</span>
+            <span class="valor">su temperatura corporal normal</span>
           </div>
         </div>
 
-        <div style="
-          display: flex; align-items: center; gap: 12px;
-          background: #fff; border: 2px solid #d7bde2;
-          border-radius: 10px; padding: 8px 12px;
-        ">
-          <span style="font-size: 26px;">🌸</span>
-          <div>
-            <div style="font-size: 20px; font-weight: 700; color: #1a1a1a;">Aymé Herrera</div>
-            <!-- div style="font-size: 12px; color: #888; font-family: 'Patrick Hand', cursive;">
-              Creativa & investigadora
-            </div -->
-          </div>
-        </div>
-
-        <div style="
-          display: flex; align-items: center; gap: 12px;
-          background: #fff; border: 2px solid #f9e400;
-          border-radius: 10px; padding: 8px 12px;
-        ">
-          <span style="font-size: 26px;">🌊</span>
-          <div>
-            <div style="font-size: 20px; font-weight: 700; color: #1a1a1a;">Brisa González</div>
-            <!-- div style="font-size: 12px; color: #888; font-family: 'Patrick Hand', cursive;">
-              Artista & historiadora
-            </div -->
-          </div>
-        </div>
-        
-        <div style="
-          display: flex; align-items: center; gap: 12px;
-          background: #fff; border: 2px solid #a9dfbf;
-          border-radius: 10px; padding: 8px 12px;
-        ">
-          <span style="font-size: 26px;">⚔️</span>
-          <div>
-            <div style="font-size: 20px; font-weight: 700; color: #1a1a1a;">Emma Estóceres</div>
-            <!-- div style="font-size: 12px; color: #888; font-family: 'Patrick Hand', cursive;">
-              Estratega & escritora
-            </div -->
-          </div>
-        </div>
-
+        <span class="firma firma-final">♡ Brisa</span>
       </div>
-
-      <!-- Frase al pie -->
-      <div style="
-        margin-top: 14px;
-        background: #2c3e50; border-radius: 8px;
-        padding: 10px; text-align: center;
-        color: #f9e400; font-size: 15px; font-weight: 700;
-      ">
-        🇦🇷 "Seamos libres, que lo demás no importa nada" 🇦🇷
-      </div>
-
     </div>
+  </section>
+
+  <!-- ====== BIBLIOGRAFÍA ====== -->
+  <section id="bibliografia" aria-label="Bibliografía">
+    <div class="seccion-titulo reveal">
+      <h2><span class="decoracion" aria-hidden="true">📚</span> Bibliografía <span class="decoracion" aria-hidden="true">📚</span></h2>
+    </div>
+
+    <div class="biblio reveal">
+      <ul>
+        <li>Ciencias Naturales 4to Bonaerense. <em>"El faro y la flor"</em> Ed. Mandioca.</li>
+        <li>Observación directa de Rocco, Tom, Bigote, Toby, Blanca, Mily, More y Lola ♡</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <span class="footer-emoji" aria-hidden="true">🐱</span>
+    <p class="footer-mensaje">"Tener gatitos en mi familia es un compromiso de amor y de responsabilidad para toda la vida."</p>
+    <p class="footer-autor">Con amor, <span class="firma">♡ Brisa</span> · 4to D</p>
+    <p class="footer-info">🐱 Rocco · Tom · Bigote · 🐶 Toby · Blanca · Mily · More · 🐹 Lola</p>
+  </footer>
+
+  <!-- ====== BOTONES FLOTANTES ====== -->
+  <button class="float-btn" id="backToTop" aria-label="Volver arriba">↑</button>
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+
+  <!-- ====== LIGHTBOX ====== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Imagen ampliada">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
+    <img id="lightboxImg" src="" alt="" />
   </div>
-</div>
 
-  <!-- ===== TOAST ===== -->
-  <div class="toast" id="toast"></div>
-
+  <!-- ====== JAVASCRIPT ====== -->
   <script>
+    (function() {
+      'use strict';
 
-    /* ================================
-       DATOS POSTS
-    ================================ */
-    const postsData = [
-      {
-        img:      "cruce_andes.webp",
-        title:    "Cruce de los Andes 🏔️",
-        location: "Cordillera de los Andes, 1817",
-        caption:  "Día 21 del cruce... hace un frío que pela 🥶 Pero ya casi llegamos a Chile. El ejército no para 💪 ¡Nada nos detiene cuando luchamos por la libertad!",
-        hashtags: "#EjércitoDelosAndes #NoMeRindo #Libertad #CruceDelosAndes",
-        date:     "Febrero de 1817",
-        likes:    24500,
-        comments: [
-          { avatar:"🎖️", user:"gral.belgrano",    text:"¡Orgullo patrio, hermano! 🇦🇷",              time:"205 años" },
-          { avatar:"🪖",  user:"un_granadero",     text:"¡Yo estuve ahí y fue INCREÍBLE, Gral! 🫡",  time:"205 años" },
-          { avatar:"🇵🇪", user:"pueblo_peruano",   text:"¡Gracias por liberarnos! 🇵🇪❤️",            time:"203 años" },
-          { avatar:"📚",  user:"profe.Pablo",      text:"¡Mis alumnos aprendieron esto hoy! 🎒❤️",   time:"Hoy"      },
-        ]
-      },
-      {
-        img:      "jose_mercedita.webp",
-        title:    "Con mi hija Mercedes 💙",
-        location: "Buenos Aires, Argentina",
-        caption:  "Mi hija Merceditas (Mercedes Tomasa) es el amor de mi vida. Le dedico cada victoria. Le dejaré mi sable como herencia y todo mi amor. 💙👧",
-        hashtags: "#MiHija #Merceditas #Amor #Familia",
-        date:     "Buenos Aires, 1820",
-        likes:    38200,
-        comments: [
-          { avatar:"👧",  user:"merceditas_oficial", text:"¡Te quiero papá! 🤍",                          time:"174 años" },
-          { avatar:"🌹",  user:"pueblo_argentino",   text:"Hoy 17 de agosto te recordamos 🌹🇦🇷",        time:"Hoy"      },
-          { avatar:"🎒",  user:"4to_d_iiq",          text:"¡Aprendimos sobre usted hoy! ¡Gracias! ❤️🇦🇷", time:"1 hora"   },
-          { avatar:"👩‍🏫", user:"profe.Mailen",        text:"¡Qué lindo trabajo hicieron chicos! 🌟",       time:"1 hora"   },
-        ]
+      // ====== SCROLL SUAVE EN NAVEGACIÓN ======
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // ====== REVEAL ON SCROLL ======
+      const reveals = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+      reveals.forEach(el => revealObserver.observe(el));
+
+      // ====== LIGHTBOX ======
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxClose = document.getElementById('lightboxClose');
+
+      document.querySelectorAll('[data-zoomable]').forEach(img => {
+        img.addEventListener('click', (e) => {
+          e.stopPropagation();
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+      });
+
+      // ====== BOTÓN VOLVER ARRIBA ======
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // ====== MODO CLARO/OSCURO ======
+      const themeToggle = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️';
       }
-    ];
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          document.documentElement.removeAttribute('data-theme');
+          themeToggle.textContent = '🌙';
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          themeToggle.textContent = '☀️';
+          localStorage.setItem('theme', 'dark');
+        }
+      });
 
-    let currentPost = 0;
-    let liked       = false;
+      // ====== PAW TRAIL (efecto patita al click) ======
+      document.addEventListener('click', e => {
+        // No crear patitas cuando se hace click en botones o links
+        if (e.target.closest('a, button, input, [data-zoomable]')) return;
 
-    /* ================================
-       ABRIR POST
-    ================================ */
-    function openPost(index) {
-      currentPost = index;
-      liked = false;
-      const p = postsData[index];
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => {
+            const paw = document.createElement('div');
+            paw.className = 'paw-trail';
+            paw.textContent = '🐾';
+            paw.style.left = (e.clientX + (Math.random() - 0.5) * 40) + 'px';
+            paw.style.top = (e.clientY + (Math.random() - 0.5) * 40) + 'px';
+            document.body.appendChild(paw);
+            setTimeout(() => paw.remove(), 1300);
+          }, i * 80);
+        }
+      });
 
-      document.getElementById('modalImgArea').innerHTML =
-        `<img src="${p.img}" alt="${p.title}">`;
-      document.getElementById('modalLocation').textContent = p.location;
-      document.getElementById('modalLikes').textContent =
-        `❤️ ${p.likes.toLocaleString('es-AR')} Me gusta`;
-      document.getElementById('modalCaption').innerHTML =
-        `${p.caption} <span class="hashtag">${p.hashtags}</span>`;
-      document.getElementById('modalDate').textContent = p.date;
-      document.getElementById('likeBtn').textContent   = '🤍';
-      document.getElementById('likeBtn').classList.remove('liked');
-
-      document.getElementById('modalComments').innerHTML =
-        p.comments.map(c => `
-          <div class="comment">
-            <div class="comment-avatar">${c.avatar}</div>
-            <div class="comment-body">
-              <span class="comment-user">${c.user}</span>
-              <span class="comment-text"> ${c.text}</span>
-              <div class="comment-time">Hace ${c.time}</div>
-            </div>
-          </div>`).join('');
-
-      document.getElementById('postModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closePost() {
-      document.getElementById('postModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function handleModalClick(e) {
-      if (e.target === document.getElementById('postModal')) closePost();
-    }
-
-    /* ================================
-       LIKE
-    ================================ */
-    function toggleLike() {
-      liked = !liked;
-      const btn = document.getElementById('likeBtn');
-      const p   = postsData[currentPost];
-
-      btn.textContent = liked ? '❤️' : '🤍';
-      btn.classList.remove('liked');
-      void btn.offsetWidth;
-      if (liked) {
-        btn.classList.add('liked');
-        p.likes++;
-        showToast('❤️ ¡Le diste Me gusta al Gral!');
-      } else {
-        p.likes--;
-        showToast('🤍 Me gusta quitado');
+      // ====== EASTER EGG: click en el emoji del hero ======
+      const heroEmoji = document.querySelector('.hero-emoji');
+      if (heroEmoji) {
+        let clickCount = 0;
+        // Solo gatos (sin leones, sin felinos salvajes): es un trabajo sobre gatos domésticos
+        const emojis = ['🐱', '😺', '😸', '😻', '😽', '🐈', '🐈‍⬛', '😹', '😾'];
+        heroEmoji.addEventListener('click', () => {
+          clickCount++;
+          heroEmoji.textContent = emojis[clickCount % emojis.length];
+          heroEmoji.style.transform = 'scale(1.3) rotate(360deg)';
+          setTimeout(() => {
+            heroEmoji.style.transform = '';
+          }, 600);
+        });
       }
-      document.getElementById('modalLikes').textContent =
-        `❤️ ${p.likes.toLocaleString('es-AR')} Me gusta`;
-    }
 
-    /* ================================
-       AVATAR
-    ================================ */
-    function openAvatar() {
-      document.getElementById('avatarModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeAvatar() {
-      document.getElementById('avatarModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+      // ====== MENU TOGGLE (móvil) ======
+      const navToggle = document.getElementById('navToggle');
+      const nav = document.querySelector('.nav');
+      navToggle.addEventListener('click', () => {
+        const links = nav.querySelectorAll('a');
+        links.forEach(link => {
+          link.style.display = link.style.display === 'none' ? '' : 'none';
+        });
+        // Si están ocultos, mostrar
+        if (links[0].style.display === 'none') {
+          links.forEach(l => l.style.display = '');
+        }
+      });
 
-    /* ================================
-       TOAST
-    ================================ */
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      clearTimeout(t._tid);
-      t._tid = setTimeout(() => t.classList.remove('show'), 2600);
-    }
+      // ====== MENSAJE CONSOLA (firma del autor) ======
+      console.log('%c🐾 Mis Gatitos: Rocco, Tom y Bigote', 'font-size: 18px; font-weight: bold; color: #ff8a5b;');
+      console.log('%cTrabajo Práctico de Ciencias Naturales · Brisa 4to D', 'font-size: 12px; color: #a685e0;');
+      console.log('%c¿Encontraste este easter egg? ¡Miau! 🐱', 'font-size: 11px; color: #6cc4a3;');
 
-    /* ================================
-       CONTADORES ANIMADOS
-    ================================ */
-    function animateCounter(el, target, duration) {
-      el.textContent = '0';
-      const startTime = performance.now();
-      function step(now) {
-        const progress = Math.min((now - startTime) / duration, 1);
-        const eased    = 1 - Math.pow(1 - progress, 4);
-        el.textContent = Math.round(eased * target).toLocaleString('es-AR');
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        animateCounter(document.getElementById('cnt-seguidores'), 10000, 1800);
-        animateCounter(document.getElementById('cnt-siguiendo'),    200,   900);
-        animateCounter(document.getElementById('cnt-posts'),          24,  700);
-      }, 700);
-    });
-
-    /* ================================
-       ESCAPE
-    ================================ */
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { closePost(); closeAvatar(); closeAlumnas(); }
-    });
-
-    function openAlumnas() {
-  document.getElementById('alumnaModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeAlumnas() {
-  document.getElementById('alumnaModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
+    })();
   </script>
+
 </body>
 </html>
