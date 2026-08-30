@@ -128,6 +128,33 @@
       transition: all var(--transicion);
     }
 
+    /* En mobile: el nav se vuelve scrollable horizontalmente
+       para que entren los 8 enlaces sin cortarse. */
+    @media (max-width: 768px) {
+      .nav {
+        top: 8px;
+        max-width: calc(100vw - 16px);
+        width: auto;
+        padding: 6px 8px;
+        gap: 2px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--durazno) transparent;
+        /* Sombra para indicar que hay más contenido a la derecha */
+        mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 24px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0, black 16px, black calc(100% - 24px), transparent 100%);
+      }
+      .nav::-webkit-scrollbar { height: 4px; }
+      .nav::-webkit-scrollbar-thumb { background: var(--durazno); border-radius: 2px; }
+      .nav a {
+        font-size: 0.78rem;
+        padding: 6px 10px;
+        flex-shrink: 0;
+      }
+    }
+
     [data-theme="dark"] .nav {
       background: rgba(31, 24, 32, 0.85);
     }
@@ -721,8 +748,31 @@
       padding: 0;
       box-shadow: var(--sombra);
       overflow: hidden;
+      position: relative;
     }
 
+    /* Contenedor scrollable solo en mobile, para las tablas */
+    .tabla-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Indicador visual de scroll horizontal en mobile */
+    @media (max-width: 899px) {
+      .tabla-scroll {
+        position: relative;
+      }
+      .tabla-scroll::after {
+        content: '';
+        position: sticky;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 30px;
+        background: linear-gradient(to right, transparent, var(--blanco) 80%);
+        pointer-events: none;
+      }
+    }
     .cuidados-encabezado {
       background: linear-gradient(135deg, var(--durazno), var(--lavanda));
       color: white;
@@ -800,6 +850,7 @@
       display: none;
       width: 100%;
       border-collapse: collapse;
+      min-width: 700px;
     }
 
     .cuidados-tabla thead {
@@ -1561,7 +1612,8 @@
       <div class="cuidados-encabezado">
         <h2>Similitudes y diferencias · Mi familia interespecie</h2>
       </div>
-      <table class="cuidados-tabla" style="display:table;">
+      <div class="tabla-scroll">
+        <table class="cuidados-tabla" style="display:table;">
         <thead>
           <tr>
             <th>Integrante</th>
@@ -1597,6 +1649,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
       <div class="cuidados-cards" style="display:grid;">
         <div class="cuidado-card">
           <h3><span class="numero">1</span> Brisa (humana)</h3>
@@ -1717,54 +1770,56 @@
       </div>
 
       <!-- Tabla para desktop -->
-      <table class="cuidados-tabla">
-        <thead>
-          <tr>
-            <th>Necesidad</th>
-            <th>¿Qué necesita?</th>
-            <th>¿Por qué? (Dato científico)</th>
-            <th>¿Cómo lo cuido yo?</th>
-            <th>Frecuencia</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>1. Temperatura</strong></td>
-            <td>38 a 39,2°C, lugar calentito</td>
-            <td>Los gatos son mamíferos y mantienen su temperatura corporal estable entre 38 a 39,2°C para que su organismo funcione bien</td>
-            <td>Caja con mantita y abriguito polar si hace frío en Mar del Plata, invierno</td>
-            <td>Diario / según clima</td>
-          </tr>
-          <tr>
-            <td><strong>2. Alimentación</strong></td>
-            <td>Alimento balanceado para gatos, agua fresca siempre</td>
-            <td>Son carnívoros estrictos, necesitan proteína animal para crecer fuertes y tener energía</td>
-            <td>Servir alimento balanceado + recipiente con agua limpia y fresca todos los días</td>
-            <td>Diario, agua siempre disponible</td>
-          </tr>
-          <tr>
-            <td><strong>3. Descanso y Seguridad</strong></td>
-            <td>12 a 16 horas de sueño, lugar seguro y tranquilo</td>
-            <td>Dormir mucho es normal, ayuda a su crecimiento y fortalece su sistema inmune</td>
-            <td>Proveer una caja cerrada pequeña con manta, en lugar tranquilo y sin ruidos</td>
-            <td>Diario, todo el día</td>
-          </tr>
-          <tr>
-            <td><strong>4. Higiene</strong></td>
-            <td>Caja de piedritas limpia, cepillado suave</td>
-            <td>Mantener limpio previene enfermedades y parásitos. Los gatos se limpian solos su pelaje</td>
-            <td>Limpiar la caja de piedritas diariamente y cepillar su pelo con cepillo suave 2-3 veces por semana</td>
-            <td>Limpieza diaria · Cepillado 2-3 veces por semana</td>
-          </tr>
-          <tr>
-            <td><strong>5. Amor y Territorio</strong></td>
-            <td>Comparten si hay confianza, respetar su espacio, juegos y mimos</td>
-            <td>Necesitan sentirse seguros y queridos para reducir el estrés y estar felices</td>
-            <td>Jugar con juguetes, dar mimos cuando se acerque, respetar cuando quiere estar solo</td>
-            <td>Diario · Momentos de juego y cariño</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="tabla-scroll">
+        <table class="cuidados-tabla">
+          <thead>
+            <tr>
+              <th>Necesidad</th>
+              <th>¿Qué necesita?</th>
+              <th>¿Por qué? (Dato científico)</th>
+              <th>¿Cómo lo cuido yo?</th>
+              <th>Frecuencia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Temperatura</strong></td>
+              <td>38 a 39,2°C, lugar calentito</td>
+              <td>Los gatos son mamíferos y mantienen su temperatura corporal estable entre 38 a 39,2°C para que su organismo funcione bien</td>
+              <td>Caja con mantita y abriguito polar si hace frío en Mar del Plata, invierno</td>
+              <td>Diario / según clima</td>
+            </tr>
+            <tr>
+              <td><strong>2. Alimentación</strong></td>
+              <td>Alimento balanceado para gatos, agua fresca siempre</td>
+              <td>Son carnívoros estrictos, necesitan proteína animal para crecer fuertes y tener energía</td>
+              <td>Servir alimento balanceado + recipiente con agua limpia y fresca todos los días</td>
+              <td>Diario, agua siempre disponible</td>
+            </tr>
+            <tr>
+              <td><strong>3. Descanso y Seguridad</strong></td>
+              <td>12 a 16 horas de sueño, lugar seguro y tranquilo</td>
+              <td>Dormir mucho es normal, ayuda a su crecimiento y fortalece su sistema inmune</td>
+              <td>Proveer una caja cerrada pequeña con manta, en lugar tranquilo y sin ruidos</td>
+              <td>Diario, todo el día</td>
+            </tr>
+            <tr>
+              <td><strong>4. Higiene</strong></td>
+              <td>Caja de piedritas limpia, cepillado suave</td>
+              <td>Mantener limpio previene enfermedades y parásitos. Los gatos se limpian solos su pelaje</td>
+              <td>Limpiar la caja de piedritas diariamente y cepillar su pelo con cepillo suave 2-3 veces por semana</td>
+              <td>Limpieza diaria · Cepillado 2-3 veces por semana</td>
+            </tr>
+            <tr>
+              <td><strong>5. Amor y Territorio</strong></td>
+              <td>Comparten si hay confianza, respetar su espacio, juegos y mimos</td>
+              <td>Necesitan sentirse seguros y queridos para reducir el estrés y estar felices</td>
+              <td>Jugar con juguetes, dar mimos cuando se acerque, respetar cuando quiere estar solo</td>
+              <td>Diario · Momentos de juego y cariño</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
